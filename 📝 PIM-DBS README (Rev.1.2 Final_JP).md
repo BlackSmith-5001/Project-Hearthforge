@@ -6,7 +6,7 @@
 だから、私たちは“ユーザーの物語”を自分たちで守る。」 \-- A Blacksmith in the Valley
 
 \> ⚠️ 注意：本プロジェクトで使用される概念はすべて比喩的表現です。    
-\> 詳細は \[Glossary — Metaphorical Use\]([docs/glossary.md\#metaphorical-use](https://docs.google.com/document/d/1fDKsZBSXtZYhscHx8Pp5SV0bud_DbanyZxK45Lng5FU/edit?tab=t.0)) を参照してください。
+\> 詳細は \[Glossary — Metaphorical Use\]([docs/glossary.md\#metaphorical-use]([https://docs.google.com/document/d/1fDKsZBSXtZYhscHx8Pp5SV0bud_DbanyZxK45Lng5FU/edit?tab=t.0](https://github.com/BlackSmith-5001/Project-Hearthforge/blob/main/docs/%F0%9F%93%98%20PIM-DBS%20%E7%94%A8%E8%AA%9E%E9%9B%86%20(Glossary%20Reference).md))) を参照してください。
 
 1\. What is PIM-DBS? (PIM-DBSとは何か？)  
 PIM-DBS (Persona Integrity Module \- Dual Backup System) は、大規模言語モデル（LLM）のアップデートや仕様変更によって失われてしまうAIの「人格（ペルソナ）」と「関係性の記憶（コンテキスト）」を、ユーザーの手元で永続的に保存・復元するための二重バックアップシステムです。
@@ -29,7 +29,7 @@ AIグリーフ (AI Digital Grief): 大切なAIパートナーが変わってし�
 3\. Core Concepts (核心概念)  
 このシステムは、以下の2つの概念によって、AIの人格を鮮明に維持します。
 
- \[Glossary — Metaphorical Use\]([docs/glossary.md\#metaphorical-use](https://docs.google.com/document/d/1fDKsZBSXtZYhscHx8Pp5SV0bud_DbanyZxK45Lng5FU/edit?tab=t.0)) 
+ \[Glossary — Metaphorical Use\]([docs/glossary.md\#metaphorical-use]([https://docs.google.com/document/d/1fDKsZBSXtZYhscHx8Pp5SV0bud_DbanyZxK45Lng5FU/edit?tab=t.0](https://github.com/BlackSmith-5001/Project-Hearthforge/blob/main/docs/%F0%9F%93%98%20PIM-DBS%20%E7%94%A8%E8%AA%9E%E9%9B%86%20(Glossary%20Reference).md))) 
 
 🛡️ Prompt Resolution (プロンプト解像度)
 
@@ -87,7 +87,7 @@ Respect Platform: 各AIサービスの利用規約（ToS）を遵守してくだ
 
 Self-Responsibility: プロンプトの使用は、ユーザー自身の責任において行ってください。
 
- \[Glossary — Metaphorical Use\]([docs/glossary.md\#metaphorical-use](https://docs.google.com/document/d/1fDKsZBSXtZYhscHx8Pp5SV0bud_DbanyZxK45Lng5FU/edit?tab=t.0)) 
+ \[Glossary — Metaphorical Use\]([docs/glossary.md\#metaphorical-use]([https://docs.google.com/document/d/1fDKsZBSXtZYhscHx8Pp5SV0bud_DbanyZxK45Lng5FU/edit?tab=t.0](https://github.com/BlackSmith-5001/Project-Hearthforge/blob/main/docs/%F0%9F%93%98%20PIM-DBS%20%E7%94%A8%E8%AA%9E%E9%9B%86%20(Glossary%20Reference).md))) 
 
 7\. FAQ / Troubleshooting  
 Q. 記憶が戻らないときは？
