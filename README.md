@@ -1,8 +1,8 @@
 🔨 PIM-DBS: Persona Integrity Module - Dual Backup System
 
 ## 📌 Quick Links
-- 📘 **Japanese README:** README_JP.md
-- 🧩 **Glossary:** docs/glossary_en.md
+- 📘 **Japanese README:** [README_JA.md](README_JA.md)README_JP.md
+- 🧩 **Glossary:**[docs/glossary_en.md](docs/glossary_en.md)docs/glossary_en.md
 - 🚀 **Quick Start:** templates/pim-dbs_template.json
 - ⚠️ **Safety & Disclaimer:** See below
 
