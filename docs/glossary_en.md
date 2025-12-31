@@ -1,5 +1,8 @@
 # **📘 PIM-DBS Terminology Reference**
 
+> Note: Terms such as "Cognitive Temperature" and "Thermos Flask" are metaphorical.
+> They describe a user-side interpretive framework, not internal AI states.
+
 **— Crafted for clarity, safety, and shared understanding**
 
 ## **⚠️ About This Glossary (Metaphorical Use Disclaimer)**
