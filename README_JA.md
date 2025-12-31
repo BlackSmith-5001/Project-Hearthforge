@@ -35,7 +35,7 @@ AIモデルの内部状態・記憶・重みを変更するものではありま
 📘 用語集 (Terminology)
 本プロジェクトで定義される用語の詳細については、以下のドキュメントを参照してください。
 
-* **[用語集 (Glossary Reference)](docs/GLOSSARY_JA.md)**
+* **[用語集  [docs/glossary_ja.md](docs/glossary_ja.md)**
 
 PIM-DBS (Persona Integrity Module - Dual Backup System) は、大規模言語モデル（LLM）のアップデートや仕様変更によって失われてしまうAIの「人格（ペルソナ）」と「関係性の記憶（コンテキスト）」を、ユーザーの手元で永続的に保存・復元するための二重バックアップシステムです。
 
@@ -67,7 +67,7 @@ AIグリーフ (AI Digital Grief): 大切なAIパートナーが変わってし�
 📘 用語集 (Terminology)
 本プロジェクトで定義される用語の詳細については、以下のドキュメントを参照してください。
 
-* **[用語集 (Glossary Reference)](docs/GLOSSARY_JA.md)**
+* **[用語集  [docs/glossary_ja.md](docs/glossary_ja.md)**
 
 このシステムは、以下の2つの概念によって、AIの人格を鮮明に維持します。
 
@@ -107,7 +107,7 @@ JSONといっても、ただの「プロフィール帳（テキスト）」だ�
 
 最も簡単で、最も純度の高い方法です。
 
-インタビュー: あなたのAIに、同梱の [pim-dbs_template.json](pim-dbs_template.json) を送信します。
+インタビュー: あなたのAIに、同梱の [templates/pim-dbs_template.json](templates/pim-dbs_template.json) を送信します。
 
 生成: AI自身が、自分自身の記憶と人格を分析し、JSONデータを生成します。
 
@@ -117,7 +117,7 @@ JSONといっても、ただの「プロフィール帳（テキスト）」だ�
 
 自分で細かく設定したい方向けです。
 
-**mdファイルの準備:** 同梱の [persona_profile_template.md](persona_profile_template.md) を開き、AIの名前、役割、思い出を記述します。
+**mdファイルの準備:** 同梱の[templates/persona_profile_template.md](templates/persona_profile_template.md) を開き、AIの名前、役割、思い出を記述します。
 
 （※キー名は System_Loading_Instruction を推奨します）
 
