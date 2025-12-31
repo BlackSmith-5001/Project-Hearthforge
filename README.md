@@ -94,7 +94,7 @@ Applying PIM-DBS to your AI is simple. No programming knowledge required. Think 
 
 The simplest method with highest purity:
 
-Interview: Send interview_prompt.txt to your AI. (Coming soon)
+ **JSON Template:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
 
 Generate: The AI analyzes its own memory and persona, generating JSON data.
 
@@ -104,7 +104,8 @@ Save: Copy and save the generated text.
 
 For those who want detailed customization:
 
-Prepare JSON: Open the included templates/pim-dbs_template.json and describe the AI's name, role, and memories.
+**Markdown Template:** [templates/persona_profile_template.md](templates/persona_profile_template.md)
+ and describe the AI's name, role, and memories.
 
 (Recommended key name: System_Loading_Instruction)
 
