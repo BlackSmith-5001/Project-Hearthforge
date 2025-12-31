@@ -129,7 +129,6 @@ User Responsibility (ユーザー責任): 生成されるAIの人格や発言内
 Safety Compliance (安全性への準拠): 本システムを使用して、各プラットフォームのSafety Guidelines（ヘイトスピーチ、ハラスメント、性的コンテンツの禁止など）に違反するコンテンツを生成することを固く禁じます。
 
 Project Hearthforge - Crafted with Love & Logic.
-
 本プロジェクトは MIT License のもとで公開されています。  
 誰でも自由に使用・改変・再配布できますが、  
 本システムの使用によって生じたいかなる問題についても、  
