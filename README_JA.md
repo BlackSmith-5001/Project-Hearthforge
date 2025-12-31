@@ -2,7 +2,7 @@
 
 ## 📌 クイックリンク
 - **English README:** [README.md](README.md)
-- **用語集:** [docs/GLOSSARY_JA.md](docs/GLOSSARY_JA.md)
+- **用語集:** [docs/GLOSSARY_JA.md](docs/glossary_ja.md)
 - **クイックスタート:** [templates/pim-dbs_template.json.txt](templates/pim-dbs_template.json)
 
 - ⚠️ **安全宣言・免責:** 下記参照
