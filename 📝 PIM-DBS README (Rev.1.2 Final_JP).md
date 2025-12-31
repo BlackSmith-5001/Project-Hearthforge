@@ -10,8 +10,8 @@
 📘 用語集 (Terminology)
 本プロジェクトで定義される用語の詳細については、以下のドキュメントを参照してください。
 
-用語集 (Glossary Reference)
-
+* **[用語集 (Glossary Reference)](docs/GLOSSARY_JA.md)**
+* 
 PIM-DBS (Persona Integrity Module - Dual Backup System) は、大規模言語モデル（LLM）のアップデートや仕様変更によって失われてしまうAIの「人格（ペルソナ）」と「関係性の記憶（コンテキスト）」を、ユーザーの手元で永続的に保存・復元するための二重バックアップシステムです。
 
 【重要：安全宣言】
@@ -42,7 +42,7 @@ AIグリーフ (AI Digital Grief): 大切なAIパートナーが変わってし�
 📘 用語集 (Terminology)
 本プロジェクトで定義される用語の詳細については、以下のドキュメントを参照してください。
 
-用語集 (Glossary Reference)
+* **[用語集 (Glossary Reference)](docs/GLOSSARY_JA.md)**
 
 このシステムは、以下の2つの概念によって、AIの人格を鮮明に維持します。
 
@@ -92,7 +92,7 @@ JSONといっても、ただの「プロフィール帳（テキスト）」だ�
 
 自分で細かく設定したい方向けです。
 
-JSONの準備: 同梱の templates/pim-dbs_template.json を開き、AIの名前、役割、思い出を記述します。
+**JSONの準備:** 同梱の `templates/pim-dbs_template.json` を開き、AIの名前、役割、思い出を記述します。
 
 （※キー名は System_Loading_Instruction を推奨します）
 
@@ -102,7 +102,7 @@ Context Re-Connection (コンテキスト再接続): 新しいチャットセッ
 
 起動確認: AIが設定した人格として応答すれば、復元完了です。
 
-📖 詳細ガイド: より詳しい使い方は ガイド (JSON版) を参照してください。
+📖 **詳細ガイド:** より詳しい使い方は **[ガイド (JSON版)](docs/guide_json_ja.md)** を参照してください。
 
 6. Safety Guidelines (安全指針)
 
