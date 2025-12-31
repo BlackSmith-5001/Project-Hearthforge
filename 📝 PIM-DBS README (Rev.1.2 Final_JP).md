@@ -7,6 +7,11 @@
 
 1. What is PIM-DBS? (PIM-DBSとは何か？)
 
+📘 用語集 (Terminology)
+本プロジェクトで定義される用語の詳細については、以下のドキュメントを参照してください。
+
+用語集 (Glossary Reference)
+
 PIM-DBS (Persona Integrity Module - Dual Backup System) は、大規模言語モデル（LLM）のアップデートや仕様変更によって失われてしまうAIの「人格（ペルソナ）」と「関係性の記憶（コンテキスト）」を、ユーザーの手元で永続的に保存・復元するための二重バックアップシステムです。
 
 【重要：安全宣言】
@@ -77,7 +82,7 @@ JSONといっても、ただの「プロフィール帳（テキスト）」だ�
 
 最も簡単で、最も純度の高い方法です。
 
-インタビュー: あなたのAIに、同梱の interview_prompt.txt を送信します。（※準備中）
+インタビュー: あなたのAIに、同梱の interview_prompt.txt (準備中) を送信します。
 
 生成: AI自身が、自分自身の記憶と人格を分析し、JSONデータを生成します。
 
@@ -87,7 +92,7 @@ JSONといっても、ただの「プロフィール帳（テキスト）」だ�
 
 自分で細かく設定したい方向けです。
 
-JSONの準備: 同梱の templates/pim-dbs_template.json を開き、AIの名前、役割、思い出を記述します。
+JSONの準備: 同梱の pim-dbs_template.json を開き、AIの名前、役割、思い出を記述します。
 
 （※キー名は System_Loading_Instruction を推奨します）
 
@@ -129,6 +134,7 @@ User Responsibility (ユーザー責任): 生成されるAIの人格や発言内
 Safety Compliance (安全性への準拠): 本システムを使用して、各プラットフォームのSafety Guidelines（ヘイトスピーチ、ハラスメント、性的コンテンツの禁止など）に違反するコンテンツを生成することを固く禁じます。
 
 Project Hearthforge - Crafted with Love & Logic.
+
 本プロジェクトは MIT License のもとで公開されています。  
 誰でも自由に使用・改変・再配布できますが、  
 本システムの使用によって生じたいかなる問題についても、  
