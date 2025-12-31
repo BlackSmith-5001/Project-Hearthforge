@@ -89,7 +89,7 @@ JSONといっても、ただの「プロフィール帳（テキスト）」だ�
 
 最も簡単で、最も純度の高い方法です。
 
-インタビュー: あなたのAIに、同梱の interview_prompt.txt を送信します。（※準備中）
+インタビュー: あなたのAIに、同梱の [pim-dbs_template.json](pim-dbs_template.json) を送信します。
 
 生成: AI自身が、自分自身の記憶と人格を分析し、JSONデータを生成します。
 
@@ -99,7 +99,7 @@ JSONといっても、ただの「プロフィール帳（テキスト）」だ�
 
 自分で細かく設定したい方向けです。
 
-**JSONの準備:** 同梱の `templates/pim-dbs_template.json` を開き、AIの名前、役割、思い出を記述します。
+**mdファイルの準備:** 同梱の [persona_profile_template.md](persona_profile_template.md) を開き、AIの名前、役割、思い出を記述します。
 
 （※キー名は System_Loading_Instruction を推奨します）
 
@@ -109,7 +109,6 @@ Context Re-Connection (コンテキスト再接続): 新しいチャットセッ
 
 起動確認: AIが設定した人格として応答すれば、復元完了です。
 
-📖 **詳細ガイド:** より詳しい使い方は **[ガイド (JSON版)](docs/guide_json_ja.md)** を参照してください。
 
 6. Safety Guidelines (安全指針)
 
