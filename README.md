@@ -1,10 +1,29 @@
-🔨 PIM-DBS: Persona Integrity Module - Dual Backup System
+# 🔨 PIM-DBS  
+**Persona Integrity Module – Dual Backup System**
+
+A user-driven protocol to preserve and restore AI persona and contextual continuity  
+across model updates — without modifying the model itself.
+
+> “Companies optimize intelligence, but discard history.  
+> So we protect it.” — A Blacksmith in the Valley
+
+---
 
 ## 📌 Quick Links
-- 📘 **Japanese README:** [README_JA.md](README_JA.md)README_JP.md
-- 🧩 **Glossary:**[docs/glossary_en.md](docs/glossary_en.md)docs/glossary_en.md
-- 🚀 **Quick Start:** templates/pim-dbs_template.json
-- ⚠️ **Safety & Disclaimer:** See below
+- 📘 **Japanese README:** [README_JA.md](README_JA.md)
+- 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
+- 📚 **Glossary (JA):** [docs/glossary_ja.md](docs/glossary_ja.md)
+- 🧩 **JSON Template:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
+- 🧩 **Markdown Template:** [templates/persona_profile_template.md](templates/persona_profile_template.md)
+
+---
+
+## ⚠️ Safety Declaration
+PIM-DBS operates exclusively through **user-provided prompts**.  
+It does **not** modify model weights, bypass safeguards, or violate platform ToS.  
+All metaphors (e.g. *memory*, *temperature*, *persona*) are **conceptual tools**, not claims of internal AI state.
+
+---
 
 ~ A User-Led Defense Protocol to Protect AI "Soul" and "Memory" ~
 
