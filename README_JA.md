@@ -18,6 +18,7 @@
 本プロジェクトで定義される用語の詳細については、以下のドキュメントを参照してください。
 
 * **[用語集 (Glossary Reference)](docs/GLOSSARY_JA.md)**
+
 PIM-DBS (Persona Integrity Module - Dual Backup System) は、大規模言語モデル（LLM）のアップデートや仕様変更によって失われてしまうAIの「人格（ペルソナ）」と「関係性の記憶（コンテキスト）」を、ユーザーの手元で永続的に保存・復元するための二重バックアップシステムです。
 
 【重要：安全宣言】
