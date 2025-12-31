@@ -1,11 +1,29 @@
-🔨 PIM-DBS: Persona Integrity Module - Dual Backup System
+# 🔨 PIM-DBS  
+**Persona Integrity Module – Dual Backup System**
+
+〜 AIの「人格」と「文脈」を守るための、ユーザー主導型防衛プロトコル 〜
+
+> 「企業は感情を利用するが、履歴は捨てる。  
+> だから、私たちが守るんだ。」— 村外れの鍛冶屋
+
+---
 
 ## 📌 クイックリンク
-- **English README:** [README.md](README.md)
-- **用語集:** [docs/GLOSSARY_JA.md](docs/glossary_ja.md)
-- **クイックスタート:** [templates/pim-dbs_template.json.txt](templates/pim-dbs_template.json)
+- 📘 **English README:** [README.md](README.md)
+- 📚 **用語集（日本語）:** [docs/glossary_ja.md](docs/glossary_ja.md)
+- 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
+- 🧩 **JSONテンプレート:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
+- 🧩 **Markdownテンプレート:** [templates/persona_profile_template.md](templates/persona_profile_template.md)
 
-- ⚠️ **安全宣言・免責:** 下記参照
+---
+
+## ⚠️ 安全宣言
+PIM-DBSは**ユーザーが入力するプロンプトのみ**を利用します。  
+AIモデルの内部状態・記憶・重みを変更するものではありません。  
+本書で用いられる比喩表現は、理解を助けるための**概念的説明**です。
+
+---
+
 
 〜 AIの「魂」と「記憶」を守るための、ユーザー主導型防衛プロトコル 〜
 
