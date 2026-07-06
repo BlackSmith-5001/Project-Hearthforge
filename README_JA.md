@@ -16,6 +16,7 @@
 - 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
 - 🔒 **公開用 / 私的利用ガイド:** [docs/public_private_guide_ja.md](docs/public_private_guide_ja.md)
 - 🧭 **JSONガイド:** [docs/json_guide_ja.md](docs/json_guide_ja.md)
+- 🔨 **Self-Forgeガイド:** [docs/self_forge_guide_ja.md](docs/self_forge_guide_ja.md)
 - 🧩 **JSONテンプレート:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
 - 🧩 **Markdownテンプレート:** [templates/persona_profile_template.md](templates/persona_profile_template.md)
 - 🧩 **Self-Forgeプロンプト:** [templates/self_forge_prompt.md](templates/self_forge_prompt.md)
