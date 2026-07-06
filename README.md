@@ -15,6 +15,7 @@ across model updates — without modifying the model itself.
 - 📘 **Japanese README:** [README_JA.md](README_JA.md)
 - 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
 - 📚 **Glossary (JA):** [docs/glossary_ja.md](docs/glossary_ja.md)
+- 🔒 **Public / Private Guide:** [docs/public_private_guide_en.md](docs/public_private_guide_en.md)
 - 🧩 **JSON Template:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
 - 🧩 **Markdown Template:** [templates/persona_profile_template.md](templates/persona_profile_template.md)
 - 🧩 **Self-Forge Prompt:** [templates/self_forge_prompt.md](templates/self_forge_prompt.md)
