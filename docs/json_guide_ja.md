@@ -1,6 +1,6 @@
 # PIM-DBS JSONガイド
 
-これは `templates/pim-dbs_template.json` のための章立てドラフトです。初見ユーザーが、JSON構造を変えずに「各項目に何を書けばよいか」を把握できるようにするための短い説明です。
+これは `templates/pim-dbs_template.json` の各項目を説明するガイドです。初見ユーザーが、JSON構造を変えずに「各項目に何を書けばよいか」を把握できるようにするための短い説明です。
 
 公開・非公開の判断については、[公開用 / 私的利用ガイド](public_private_guide_ja.md) を参照してください。
 

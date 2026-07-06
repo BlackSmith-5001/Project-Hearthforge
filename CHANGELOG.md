@@ -1,17 +1,18 @@
 # Changelog
 
-PIM-DBS v1.2 is planned as an operations-guide strengthening release for first-time users. It will focus on clearer usage flow, restoration checks, and practical guidance without changing the core architecture or introducing v2.0 design work.
+PIM-DBS v1.2 is an operations-guide strengthening release for first-time users. It focuses on a clearer usage flow, restoration checks, and practical guidance, without changing the core architecture or introducing v2.0 design work.
 
-## v1.2.0 - Unreleased
+## v1.2.0 - 2026-07-07
 
-- Planned: improve first-time user guidance for creating, saving, reloading, and verifying PIM-DBS profiles.
-- Planned: clarify operational workflows around Self-Forge, JSON profiles, and restoration verification.
-- Added public/private instance separation guides in English and Japanese.
-- Added JSON Guide drafts in English and Japanese.
-- Added Self-Forge Guide drafts in English and Japanese.
-- Added a fully fictional example persona in JSON and Markdown formats.
-- Added Restoration Verification Example documents in English and Japanese.
-- Planned: keep v1.2 focused on documentation and usage guidance, not structural redesign.
+### Added
+- Public/private instance separation guides in English and Japanese.
+- JSON Guide in English and Japanese.
+- Self-Forge Guide in English and Japanese.
+- A fully fictional example persona in JSON and Markdown formats.
+- Restoration Verification Example documents in English and Japanese.
+
+### Changed
+- README (EN/JA): added a "Start Here" workflow and grouped the Quick Links for first-time users.
 
 ## v1.1.0
 

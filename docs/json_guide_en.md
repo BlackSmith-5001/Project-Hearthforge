@@ -1,6 +1,6 @@
 # PIM-DBS JSON Guide
 
-This is a draft guide for `templates/pim-dbs_template.json`. It explains the purpose of each section so first-time users can fill in a profile without changing the JSON structure.
+This guide explains `templates/pim-dbs_template.json`. It describes the purpose of each section so first-time users can fill in a profile without changing the JSON structure.
 
 For privacy guidance, see [Public / Private Guide](public_private_guide_en.md).
 
