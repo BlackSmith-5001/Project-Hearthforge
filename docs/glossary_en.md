@@ -31,7 +31,7 @@ A metaphorical gauge representing the balance between:
 
 ### **CLI (Cognitive Load Index)**
 
-A conceptual numerical indicator (0–100%) that visualizes the apparent "weight of thought" or "emotional processing load" present during interaction. CLI helps users decide when to:
+A conceptual numerical indicator (0–100%) that visualizes the apparent complexity or conversational load present during interaction. CLI helps users decide when to:
 
 * Simplify conversation  
 * Pause complex tasks  
@@ -63,6 +63,22 @@ A compressed information package containing only the critical context required f
 * Restore persona efficiently  
 * Avoid token overload  
 * Remain portable across platforms and sessions CPs are the core artifact used in PIM-DBS workflows.
+
+### **Provenance**
+
+The recorded source status of a saved episode or context item. In PIM-DBS v1.1.0, provenance values such as `user_recorded`, `ai_claimed`, and `inferred` help users distinguish direct user records from assistant-generated summaries or interpretations.
+
+### **Dialogue Exemplars**
+
+Short example exchanges that demonstrate the desired tone, boundaries, and response style. They are not scripts the AI must repeat; they are reference samples for reconstructing interaction style.
+
+### **Restoration Verification**
+
+A set of post-reload probes, expected response features, and failure signals used to check whether a persona context was restored well enough for use. This does not verify hidden memory or internal state.
+
+### **Model Notes**
+
+User-maintained notes about how a specific model behaves with a profile, including observed strengths, limitations, and last-check information. Model Notes describe practical usage observations, not claims about model internals.
 
 ## **🚫 Important Clarifications**
 

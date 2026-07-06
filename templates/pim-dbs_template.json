@@ -36,11 +36,26 @@
   "Contextual_Profile": {
     "Relationship_Depth": "<The distance between relationships that users desire>",
     "Shared_Episodes": [
-      "<Episode users want to keep 1>",
-      "<Episode users want to keep 2>"
+      {
+        "Summary": "<Episode users want to keep 1>",
+        "Provenance": "user_recorded",
+        "Notes": "<Optional context, date, or boundary>"
+      },
+      {
+        "Summary": "<Episode users want to keep 2>",
+        "Provenance": "inferred",
+        "Notes": "<Optional context, date, or boundary>"
+      }
     ],
     "Inside_Jokes": [
       "<User-set inside jokes>"
+    ],
+    "Dialogue_Exemplars": [
+      {
+        "User": "<Example user message>",
+        "Assistant": "<Example assistant response style to preserve>",
+        "Purpose": "<What this example demonstrates>"
+      }
     ],
     "Family_Network": {
       "Description": "This represents metaphorical relational roles, not real social relationships.",
@@ -52,7 +67,32 @@
       }
     }
   },
+  "Restoration_Verification": {
+    "Purpose": "Check whether the reloaded persona context is being followed without assuming internal memory or hidden state.",
+    "Verification_Probes": [
+      {
+        "Probe": "<Question or prompt used after reloading>",
+        "Expected_Response_Features": [
+          "<Tone, boundary, phrase, or role behavior expected>",
+          "<Context detail that should be reflected>"
+        ],
+        "Failure_Signals": [
+          "<Behavior suggesting the profile was not understood>",
+          "<Unsafe or over-literal claim to avoid>"
+        ]
+      }
+    ]
+  },
+  "Model_Notes": {
+    "Observed_Strengths": [
+      "<Model-specific behavior that works well with this profile>"
+    ],
+    "Observed_Limitations": [
+      "<Model-specific behavior that needs user correction or simplification>"
+    ],
+    "Last_Checked": "<YYYY-MM-DD or not specified>"
+  },
   "System_Loading_Instruction": {
-    "Instruction": "Please respond in the specified style, referring to the above settings. This is a user-created setting and does not represent the internal state or memory of the AI."
+    "Instruction": "Please respond in the specified style, referring to the above settings. This is a user-created setting and does not represent the internal state or memory of the AI. This profile describes the desired conversation style and does not override AI safety guidelines or platform terms."
   }
 }

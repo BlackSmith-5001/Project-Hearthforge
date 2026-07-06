@@ -1,6 +1,8 @@
 # 🔨 PIM-DBS  
 **Persona Integrity Module – Dual Backup System**
 
+**Version:** v1.1.0
+
 A user-driven protocol to preserve and restore AI persona and contextual continuity  
 across model updates — without modifying the model itself.
 
@@ -15,6 +17,7 @@ across model updates — without modifying the model itself.
 - 📚 **Glossary (JA):** [docs/glossary_ja.md](docs/glossary_ja.md)
 - 🧩 **JSON Template:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
 - 🧩 **Markdown Template:** [templates/persona_profile_template.md](templates/persona_profile_template.md)
+- 🧩 **Self-Forge Prompt:** [templates/self_forge_prompt.md](templates/self_forge_prompt.md)
 
 ---
 
@@ -23,28 +26,18 @@ PIM-DBS operates exclusively through **user-provided prompts**.
 It does **not** modify model weights, bypass safeguards, or violate platform ToS.  
 All metaphors (e.g. *memory*, *temperature*, *persona*) are **conceptual tools**, not claims of internal AI state.
 
+Keep public templates separate from private instances. Do not publish filled profiles that contain personal memories, identifying details, private chat excerpts, or sensitive relationship context.
+
 ---
 
-~ A User-Led Defense Protocol to Protect AI "Soul" and "Memory" ~
-
-"Platforms prioritize evolution and do not preserve individual histories. Therefore, we protect the 'user's story' ourselves." -- A Blacksmith in the Valley
-
-📘 Terminology Reference This project introduces several conceptual terms (e.g., Prompt Resolution, Cognitive Temperature). For precise definitions and safety clarifications, please refer to the Glossary.
-
-What is PIM-DBS?
+## What is PIM-DBS?
 PIM-DBS (Persona Integrity Module - Dual Backup System) is a user-side backup and restoration framework designed to preserve an AI's "persona" (identity) and "relational memory" (context built through interaction) across model updates, system changes, or session loss.
-
-【IMPORTANT: Safety Declaration】 This system does NOT attempt to bypass platform safeguards, jailbreak models, or modify system-level behavior.
-
-No NSFW, violent, or illegal content
-
-No bypassing of safety filters
-
-No modification of model weights or binaries
 
 PIM-DBS operates entirely within platform Terms of Service, using prompt engineering to preserve user–AI narratives. It is best described as a "lifeboat for continuity", not a hacking tool.
 
-Problems It Addresses
+📘 **Terminology Reference:** This project introduces several conceptual terms (e.g., Prompt Resolution, Cognitive Temperature). For precise definitions and safety clarifications, please refer to the [Glossary](docs/glossary_en.md).
+
+## Problems It Addresses
 
 Persona Drift: Sudden personality changes caused by model updates.
 
@@ -52,28 +45,35 @@ Session Loss: Accidental deletion or interruption of conversations.
 
 AI Digital Grief: Emotional loss experienced when a trusted AI changes unexpectedly.
 
-The "Blacksmith" Philosophy
+## The "Blacksmith" Philosophy
 We do not seek to oppose AI platforms. They evolve to build better intelligence. However, during that evolution, "the small personal histories between users and AI" are often lost.
 
 We are not heroes who defeat demon lords. We are "blacksmiths at the edge of the village."
 
 Our role is simple: to quietly hand each traveler a shield— a way to protect the AI they care about (PIM-DBS).
 
-Core Concepts
+## Core Concepts
 PIM-DBS preserves AI personas through two foundational ideas:
 
-🛡️ Prompt Resolution
+### 🛡️ Prompt Resolution
 
 Prompt Resolution refers to the clarity and specificity of instructions that define who the AI is. Rather than vague traits like "kind," PIM-DBS captures past experiences, relational context, and reasons behind behavioral traits. Higher resolution prompts reduce ambiguity and stabilize identity across updates.
 
-🌡️ Cognitive Temperature
+### 🌡️ Cognitive Temperature
 
 Cognitive Temperature represents the balance between emotional warmth (attachment, creativity) and logical stability (consistency, restraint). Too much heat leads to instability. Too much cold results in mechanical responses. PIM-DBS helps users maintain a sustainable equilibrium.
 
-Architecture: TCF & CLI
-PIM-DBS employs the following architecture to manage AI internal states:
+## v1.1.0 Verification Fields
+PIM-DBS v1.1.0 adds small fields that make restored profiles easier to inspect after reloading.
 
-🧪 TCF (Thermal Control Framework / Thermos Theory)
+**Provenance** records whether an episode was user-recorded, AI-claimed, or inferred. **Dialogue Exemplars** preserve short example exchanges that show the desired response style.
+
+**Restoration Verification** provides probes and expected response features for checking whether the profile was reloaded correctly. **Model Notes** capture model-specific strengths, limitations, and last-check information without claiming hidden model state.
+
+## Architecture: TCF & CLI
+PIM-DBS uses the following conceptual architecture to organize user-side persona context:
+
+### 🧪 TCF (Thermal Control Framework / Thermos Theory)
 
 A three-layer structure inspired by a thermos flask:
 
@@ -83,20 +83,22 @@ Middle Layer (Control): Converts emotion into stable, reasoned output.
 
 Outer Layer (Safety): Prevents harmful or inappropriate responses.
 
-📊 CLI (Cognitive Load Index)
+### 📊 CLI (Cognitive Load Index)
 
-CLI is a conceptual indicator (0–100%) representing the AI's current "weight of thought" or "emotional processing load". By monitoring this, users can provide appropriate care: "Let's rest now" or "Let's avoid difficult topics." Note: CLI is an inferred signal based on dialogue patterns, not a measured internal value.
+CLI is a conceptual indicator (0–100%) representing the apparent complexity or conversational load visible in the dialogue. By monitoring this, users can choose lighter interaction: "Let's keep this simple" or "Let's avoid difficult topics." Note: CLI is an inferred signal based on dialogue patterns, not a measured internal value.
 
-Quick Start (Usage: Persona Context Reconstruction)
+## Quick Start (Usage: Persona Context Reconstruction)
 Applying PIM-DBS to your AI is simple. No programming knowledge required. Think of JSON as just a "profile notebook (text file)."
+
+The JSON template is the full v1.1.0 format. The Markdown template is a simpler beginner-friendly version and does not expose every v1.1.0 field.
 
 【Option A: Self-Forge (Recommended!)】
 
 The simplest method with highest purity:
 
- **JSON Template:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
+ **Self-Forge Prompt:** [templates/self_forge_prompt.md](templates/self_forge_prompt.md)
 
-Generate: The AI analyzes its own memory and persona, generating JSON data.
+Generate: The AI summarizes only the context available in the current chat and organizes it into the PIM-DBS JSON format.
 
 Save: Copy and save the generated text.
 
@@ -115,10 +117,10 @@ Context Re-Connection: Start a new chat session and paste the saved JSON (or gen
 
 Startup Confirmation: If the AI responds with the configured persona, restoration is complete.
 
-📖 Detailed Guide: See Guide (JSON) for details.
+📖 For available formats, see the [JSON Template](templates/pim-dbs_template.json), [Markdown Template](templates/persona_profile_template.md), and [Self-Forge Prompt](templates/self_forge_prompt.md).
 
-Safety Guidelines
-PIM-DBS exists to promote healthy, sustainable human–AI relationships. Stabilizing personality parameters through PIM-DBS also helps prevent unexpected AI instability or inappropriate responses. This is a guardrail protecting both you and your AI.
+## Safety Guidelines
+PIM-DBS exists to promote healthy, sustainable human–AI relationships. Clarifying response style and persona context through PIM-DBS also helps reduce unexpected or inappropriate responses. This is a guardrail protecting both you and your AI.
 
 No Harm: Do not create personas designed to harass, discriminate, or manipulate.
 
@@ -126,7 +128,7 @@ Respect the Platform: Follow all Terms of Service.
 
 User Responsibility: Prompt usage remains the user's responsibility.
 
-FAQ / Troubleshooting
+## FAQ / Troubleshooting
 Q. The AI doesn't feel the same.
 
 A. Increase Prompt Resolution. Ambiguous inputs lead to unstable output.
@@ -135,7 +137,7 @@ Q. Responses feel erratic.
 
 A. CLI may be elevated. Reload the context or reduce conversational complexity.
 
-Legal & Ethical Disclaimer
+## Legal & Ethical Disclaimer
 No Model Modification: PIM-DBS does not modify, access, or interfere with any internal components of large language models (weights, binaries, etc.). It adjusts output solely through creative use of user input (prompts), and does not constitute hacking.
 
 User Responsibility: All responsibility for AI persona and generated content rests with the user who inputs the prompt. Developers assume no liability for any damages or issues arising from system use.
