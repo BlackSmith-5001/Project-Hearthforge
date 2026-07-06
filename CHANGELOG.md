@@ -2,7 +2,7 @@
 
 PIM-DBS v1.3 is a lightweight external-readiness release. It focuses on FAQ, discussion materials, and a lightweight Temporal Anchor note, without introducing v2.0 architecture changes.
 
-## v1.3.0 - Unreleased
+## v1.3.0 - 2026-07-07
 
 ### Added
 - FAQ documents in English and Japanese.
