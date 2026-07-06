@@ -9,6 +9,7 @@ PIM-DBS v1.2 is planned as an operations-guide strengthening release for first-t
 - Added public/private instance separation guides in English and Japanese.
 - Added JSON Guide drafts in English and Japanese.
 - Added Self-Forge Guide drafts in English and Japanese.
+- Added a fully fictional example persona in JSON and Markdown formats.
 - Planned: keep v1.2 focused on documentation and usage guidance, not structural redesign.
 
 ## v1.1.0
