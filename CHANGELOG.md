@@ -1,6 +1,20 @@
 # Changelog
 
-PIM-DBS v1.2 is an operations-guide strengthening release for first-time users. It focuses on a clearer usage flow, restoration checks, and practical guidance, without changing the core architecture or introducing v2.0 design work.
+PIM-DBS v1.3 is a lightweight external-readiness release. It focuses on FAQ, discussion materials, and a lightweight Temporal Anchor note, without introducing v2.0 architecture changes.
+
+## v1.3.0 - Unreleased
+
+### Added
+- FAQ documents in English and Japanese.
+- Discussion Prompts documents for external review and community questions.
+
+### Changed
+- JSON Guide (EN/JA): added a lightweight Temporal Anchor note as an optional user-provided session reference.
+- README (EN/JA): added FAQ and Discussion Prompts to the Quick Links.
+
+### Scope
+- Kept v1.3 focused on external-readiness documentation and lightweight safety clarification.
+- v2.0 architecture changes are not included.
 
 ## v1.2.0 - 2026-07-07
 

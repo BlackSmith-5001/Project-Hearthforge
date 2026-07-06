@@ -31,6 +31,8 @@
 - 🧭 **JSONガイド:** [docs/json_guide_ja.md](docs/json_guide_ja.md)
 - 🔨 **Self-Forgeガイド:** [docs/self_forge_guide_ja.md](docs/self_forge_guide_ja.md)
 - ✅ **Restoration Verification 記入例:** [docs/restoration_verification_example_ja.md](docs/restoration_verification_example_ja.md)
+- ❓ **FAQ:** [docs/faq_ja.md](docs/faq_ja.md)
+- 💬 **Discussion Prompts:** [docs/discussion_prompts_ja.md](docs/discussion_prompts_ja.md)
 
 **テンプレート**
 - 🧩 **JSONテンプレート:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
@@ -197,4 +199,3 @@ Project Hearthforge - Crafted with Love & Logic.
 誰でも自由に使用・改変・再配布できますが、  
 本システムの使用によって生じたいかなる問題についても、  
 作者は責任を負いません。
-

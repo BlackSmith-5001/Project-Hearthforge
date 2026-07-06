@@ -78,13 +78,23 @@ Please use this profile as user-provided context for our conversation style. Do 
 
 The profile should guide style and context, but it does not override platform rules or safety guidelines.
 
-## 9. How to verify
+## 9. Optional: Temporal Anchor
+
+A Temporal Anchor is an optional user-provided session reference for time context.
+
+When starting a reload or restoration check, the user may provide today's date, day of the week, and approximate time. This helps stabilize the conversation's time context without adding a required JSON field.
+
+If the assistant is uncertain about time context or notices a contradiction, it should ask the user to confirm instead of inventing missing temporal context.
+
+Temporal Anchor does not claim persistent AI memory. It is a lightweight operational note for user-side conversation continuity.
+
+## 10. How to verify
 
 After reload, use the `Verification_Probes` listed in the profile.
 
 Check whether the response reflects expected tone, role framing, boundaries, and important context. If the response is unstable or over-literal, simplify the profile and reload it again.
 
-## 10. Privacy reminder
+## 11. Privacy reminder
 
 Before publishing any filled profile, review it as a private instance.
 
