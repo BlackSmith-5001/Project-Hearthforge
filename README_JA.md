@@ -10,19 +10,41 @@
 
 ---
 
+## 🚦 まずはこちら
+初めて PIM-DBS プロファイルを作る場合は、次の順番で進めてください。
+
+1. 公開・非公開を決める: [公開用 / 私的利用ガイド](docs/public_private_guide_ja.md) を読む。
+2. プロフィールを作る: [Self-Forgeガイド](docs/self_forge_guide_ja.md) または [JSONガイド](docs/json_guide_ja.md) を使う。
+3. 保存する: [JSONテンプレート](templates/pim-dbs_template.json) に記入する。
+4. 再読込する: [JSONガイド](docs/json_guide_ja.md) の再読込方法を参照する。
+5. 検分する: [Restoration Verification 記入例](docs/restoration_verification_example_ja.md) を使い、[架空JSONサンプル](examples/fictional_companion_minimal.json) と見比べる。
+
+---
+
 ## 📌 クイックリンク
-- 📘 **English README:** [README.md](README.md)
-- 📚 **用語集（日本語）:** [docs/glossary_ja.md](docs/glossary_ja.md)
-- 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
+
+**まずはこちら**
+- 🚦 **おすすめの進め方:** [まずはこちら](#-まずはこちら)
+
+**ガイド**
 - 🔒 **公開用 / 私的利用ガイド:** [docs/public_private_guide_ja.md](docs/public_private_guide_ja.md)
 - 🧭 **JSONガイド:** [docs/json_guide_ja.md](docs/json_guide_ja.md)
 - 🔨 **Self-Forgeガイド:** [docs/self_forge_guide_ja.md](docs/self_forge_guide_ja.md)
 - ✅ **Restoration Verification 記入例:** [docs/restoration_verification_example_ja.md](docs/restoration_verification_example_ja.md)
-- 🧪 **架空サンプル（JSON）:** [examples/fictional_companion_minimal.json](examples/fictional_companion_minimal.json)
-- 🧪 **架空サンプル（Markdown）:** [examples/fictional_companion_profile.md](examples/fictional_companion_profile.md)
+
+**テンプレート**
 - 🧩 **JSONテンプレート:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
 - 🧩 **Markdownテンプレート:** [templates/persona_profile_template.md](templates/persona_profile_template.md)
 - 🧩 **Self-Forgeプロンプト:** [templates/self_forge_prompt.md](templates/self_forge_prompt.md)
+
+**サンプル**
+- 🧪 **架空サンプル（JSON）:** [examples/fictional_companion_minimal.json](examples/fictional_companion_minimal.json)
+- 🧪 **架空サンプル（Markdown）:** [examples/fictional_companion_profile.md](examples/fictional_companion_profile.md)
+
+**リファレンス**
+- 📘 **English README:** [README.md](README.md)
+- 📚 **用語集（日本語）:** [docs/glossary_ja.md](docs/glossary_ja.md)
+- 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
 
 ---
 

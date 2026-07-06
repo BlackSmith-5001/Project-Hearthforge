@@ -11,19 +11,41 @@ across model updates — without modifying the model itself.
 
 ---
 
+## 🚦 Start Here
+For a first PIM-DBS profile, follow this path:
+
+1. Decide what stays private: read the [Public / Private Guide](docs/public_private_guide_en.md).
+2. Create a profile: use the [Self-Forge Guide](docs/self_forge_guide_en.md) or the [JSON Guide](docs/json_guide_en.md).
+3. Save the profile: fill in the [JSON Template](templates/pim-dbs_template.json).
+4. Reload it: follow the reload notes in the [JSON Guide](docs/json_guide_en.md).
+5. Verify restoration: use the [Restoration Verification Example](docs/restoration_verification_example_en.md) and compare with the [fictional JSON example](examples/fictional_companion_minimal.json).
+
+---
+
 ## 📌 Quick Links
-- 📘 **Japanese README:** [README_JA.md](README_JA.md)
-- 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
-- 📚 **Glossary (JA):** [docs/glossary_ja.md](docs/glossary_ja.md)
+
+**Start Here**
+- 🚦 **Recommended workflow:** [Start Here](#-start-here)
+
+**Guides**
 - 🔒 **Public / Private Guide:** [docs/public_private_guide_en.md](docs/public_private_guide_en.md)
 - 🧭 **JSON Guide:** [docs/json_guide_en.md](docs/json_guide_en.md)
 - 🔨 **Self-Forge Guide:** [docs/self_forge_guide_en.md](docs/self_forge_guide_en.md)
 - ✅ **Restoration Verification Example:** [docs/restoration_verification_example_en.md](docs/restoration_verification_example_en.md)
-- 🧪 **Fictional Example (JSON):** [examples/fictional_companion_minimal.json](examples/fictional_companion_minimal.json)
-- 🧪 **Fictional Example (Markdown):** [examples/fictional_companion_profile.md](examples/fictional_companion_profile.md)
+
+**Templates**
 - 🧩 **JSON Template:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
 - 🧩 **Markdown Template:** [templates/persona_profile_template.md](templates/persona_profile_template.md)
 - 🧩 **Self-Forge Prompt:** [templates/self_forge_prompt.md](templates/self_forge_prompt.md)
+
+**Examples**
+- 🧪 **Fictional Example (JSON):** [examples/fictional_companion_minimal.json](examples/fictional_companion_minimal.json)
+- 🧪 **Fictional Example (Markdown):** [examples/fictional_companion_profile.md](examples/fictional_companion_profile.md)
+
+**Reference**
+- 📘 **Japanese README:** [README_JA.md](README_JA.md)
+- 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
+- 📚 **Glossary (JA):** [docs/glossary_ja.md](docs/glossary_ja.md)
 
 ---
 
