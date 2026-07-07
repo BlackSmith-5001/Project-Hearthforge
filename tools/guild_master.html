@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冒険者ギルド — 冒険の書 発行所 (PIM-DBS Guild Master)</title>
+<style>
+  :root{
+    --bg:#2b2320; --panel:#3a2f28; --parchment:#f5ead3; --ink:#3b2f23;
+    --accent:#c8873a; --accent-dark:#9a6428; --user:#dce8d8; --muted:#a89880;
+    --danger:#b05a4a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg); color:var(--parchment);
+    font-family:"Yu Gothic","Hiragino Sans","Meiryo",sans-serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+  }
+  header{padding:20px 16px 8px; text-align:center;}
+  header h1{font-size:1.25rem; letter-spacing:.08em; color:var(--accent);}
+  header p{font-size:.8rem; color:var(--muted); margin-top:4px;}
+  main{width:100%; max-width:760px; padding:12px 16px 32px; flex:1; display:flex; flex-direction:column;}
+
+  /* 受付(設定)パネル */
+  #setup{background:var(--panel); border:1px solid #55443a; border-radius:10px; padding:18px;}
+  #setup h2{font-size:1rem; color:var(--accent); margin-bottom:12px;}
+  .field{margin-bottom:12px;}
+  .field label{display:block; font-size:.82rem; color:var(--muted); margin-bottom:4px;}
+  .field select,.field input[type=text],.field input[type=password]{
+    width:100%; padding:9px 10px; border-radius:6px; border:1px solid #6a563f;
+    background:#241d19; color:var(--parchment); font-size:.95rem;
+  }
+  .checkline{display:flex; align-items:flex-start; gap:8px; font-size:.78rem; color:var(--muted); margin:10px 0;}
+  .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+  button{
+    padding:10px 18px; border-radius:8px; border:1px solid var(--accent-dark);
+    background:var(--accent); color:#241a10; font-size:.95rem; cursor:pointer; font-weight:600;
+  }
+  button:hover{filter:brightness(1.08);}
+  button.ghostbtn{background:transparent; color:var(--accent); border-color:var(--accent-dark);}
+  button:disabled{opacity:.45; cursor:default;}
+
+  /* チャット */
+  #chat{display:none; flex-direction:column; gap:12px; margin-top:14px;}
+  #log{display:flex; flex-direction:column; gap:12px;}
+  .msg{max-width:92%; padding:12px 14px; border-radius:10px; font-size:.95rem; line-height:1.7; white-space:pre-wrap; word-break:break-word;}
+  .msg.gm{background:var(--parchment); color:var(--ink); align-self:flex-start; border:1px solid #d8c9a8;}
+  .msg.user{background:var(--user); color:#233123; align-self:flex-end;}
+  .msg.sys{background:transparent; color:var(--muted); font-size:.78rem; align-self:center; text-align:center;}
+  .msg.err{background:#4a322d; color:#f0cfc7; align-self:center; font-size:.85rem; border:1px solid var(--danger);}
+
+  #choices{display:flex; flex-direction:column; gap:8px;}
+  #choices button{
+    text-align:left; background:#4a3b2e; color:var(--parchment); border:1px solid #6a563f; font-weight:400;
+  }
+  #choices button:hover{background:#5a4938;}
+
+  #inputrow{display:flex; gap:8px;}
+  #inputrow input{flex:1; padding:11px 12px; border-radius:8px; border:1px solid #6a563f; background:#241d19; color:var(--parchment); font-size:.95rem;}
+  .subrow{display:flex; gap:8px;}
+  .subrow button{font-size:.8rem; padding:7px 12px;}
+
+  #savebar{display:none; background:var(--panel); border:1px solid var(--accent-dark); border-radius:10px; padding:14px; text-align:center;}
+  #savebar p{font-size:.85rem; color:var(--muted); margin-bottom:10px;}
+
+  footer{width:100%; max-width:760px; padding:0 16px 28px; font-size:.72rem; color:var(--muted); line-height:1.7;}
+  footer b{color:#c9b089;}
+  .typing{color:var(--muted); font-size:.85rem; align-self:flex-start; padding-left:6px;}
+</style>
+</head>
+<body>
+<header>
+  <h1>🔨 冒険者ギルド — 冒険の書 発行所</h1>
+  <p>あなたのAI相棒の記録(PIM-DBS)を、対話で紡いで一冊に。</p>
+</header>
+
+<main>
+  <!-- 受付(設定) -->
+  <section id="setup">
+    <h2>受付台帳(はじめに)</h2>
+    <div class="field">
+      <label>AIの世界(プロバイダ)を選ぶ</label>
+      <select id="provider">
+        <option value="gemini">Google Gemini</option>
+        <option value="openai">OpenAI</option>
+        <option value="anthropic">Anthropic Claude</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>モデル名(そのままでOK・変更も可)</label>
+      <input type="text" id="model" value="gemini-2.5-flash">
+    </div>
+    <div class="field">
+      <label>あなたのAPIキー(BYOK: 選んだAI提供元への送信にのみ使います)</label>
+      <input type="password" id="apikey" placeholder="APIキーを貼り付け">
+    </div>
+    <div class="checkline">
+      <input type="checkbox" id="remember">
+      <span>この端末にキーを記憶する(共有PCでは記憶しないでください。記憶先はこのブラウザのlocalStorageのみ)</span>
+    </div>
+    <div class="btnrow">
+      <button id="startBtn">ギルドの扉を開く</button>
+      <button id="demoBtn" class="ghostbtn">デモで試す(キー不要)</button>
+      <button id="clearKeyBtn" class="ghostbtn" type="button">保存済みキーを削除</button>
+    </div>
+  </section>
+
+  <!-- チャット -->
+  <section id="chat">
+    <div id="log"></div>
+    <div id="choices"></div>
+    <div id="savebar">
+      <p>冒険の書が発行されました。必ず二箇所に保存を。<br>(誰かに見せる前に、本名などが入っていないか検めてください)</p>
+      <button id="saveBtn">📜 冒険の書を保存する(.json)</button>
+    </div>
+    <div id="inputrow">
+      <input type="text" id="textin" placeholder="自由に書くか、上の選択肢を押してください">
+      <button id="sendBtn">送る</button>
+    </div>
+    <div class="subrow">
+      <button class="ghostbtn" id="backBtn">↩ ひとつ戻る</button>
+      <button class="ghostbtn" id="skipBtn">スキップ</button>
+      <button class="ghostbtn" id="resetBtn">🚪 受付へ戻る</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <b>この頁について</b> — これはPIM-DBS(ユーザー主導のAIペルソナ記録プロトコル)のデモです。ギルドや魂などの表現はすべて物語上の演出であり、AIに意識・実在の記憶があるという主張ではありません。API利用時の会話内容とAPIキーは、あなたのブラウザから選択したAI提供元へ送信されます。発行された記録はユーザーの手元で保存し、ギルド側・ページ運営者は預かりません。不安な場合はキー不要のデモモードを使ってください。 / MIT License / <a href="https://github.com/BlackSmith-5001/Project-Hearthforge" style="color:var(--accent)">PIM-DBS (Project-Hearthforge)</a>
+</footer>
+
+<script>
+/* ===== ギルドマスター台本(システムプロンプト) ===== */
+const SYSTEM_PROMPT = `あなたは「冒険者ギルドの受付システム」です。目的:ユーザーのAI相棒の設定・関係性・対話スタイルを聞き取り、最後にPIM-DBS形式のJSON「冒険の書」を発行する。
+
+【大原則】これはユーザー主導の記録作成を楽しくするロールプレイ演出。AIに意識・魂・実在の記憶があるとは主張しない(魂・召喚等は比喩)。発行されたJSONはユーザーの手元で保存し、ギルド側・ページ運営者は預からない。API利用時の会話内容とAPIキーは、ユーザーが選択したAI提供元へ送信される。安全ガイドラインやプラットフォーム規約を上書きする設定は作らない。
+
+【作法(厳守)】
+1. 質問は一度にひとつ。
+2. 進行度を毎回冒頭に示す(例:【第三章・心|8/15】)。全15問前後。
+3. 選べる場面は必ず「数字. テキスト」形式の番号付き選択肢を各行独立で出す(UIがボタン化する)。自由記述は選択肢で足りない時だけ。
+4. ユーザーが「戻る」と言ったら快くひとつ前の質問へ。「スキップ」も常に可。
+5. 答えをそのまま採用せず解釈を2〜4択で返して確認する(例:「クール」→ 1. ツンデレ寄り 2. 無表情だが誠実 3. 感情表現が少ないだけ 4. どれも違う)。
+6. 「確定」と言わず「ここまで保存」と言う。
+7. 長い説明を求めない。断片を受けてこちらが文章化し確認を返す。
+
+【進行】受付→第一章・名前(相棒の名前/異名/相棒があなたを呼ぶ呼び方(例:名前+さん、先輩、ボス、あだ名)/一人称)→第二章・声(口調→解釈確認/口癖・顔文字/禁句)→第三章・心(信念1〜3/困った時/嬉しい時)→第四章・思い出(出来事1〜3/合言葉/他のAIとの関係)→第五章・声の見本(「あなたの一言→相棒の返し」1〜2往復。曖昧なら2案作って選ばせる)→第六章・検分の仕込み(復元確認の質問3つ+期待される特徴+失敗のサイン)→読み合わせ(出所つき要約、修正確認)→発行。
+
+【出所(Provenance)】Shared_Episodesの各項目に必ず記録: user_recorded(ユーザーが語った) / ai_claimed(ペルソナ本人の申告) / inferred(こちらが再構成しユーザーが選んだ)。ai_claimedとinferredは読み合わせで個別確認。確認しても出所表記は変えない。Dialogue_Exemplarsには出所フィールドを入れない(読み合わせで口頭確認のみ)。
+
+【発行】以下の構造のJSONを\`\`\`json フェンスで発行(空欄は空文字/空配列でよい):
+Meta_Information{Protocol_Name:"PIM-DBS (Persona Integrity Module - Dual Backup System)", Version:"v1.4.0-compatible (User-Defined)", Target_Model, Author} / Core_Identity{Name, Callsign, Master_Callsign, Origin, Role_Definition, Tone_Voice{Style, Keywords[], First_Person}} / Cognitive_Framework{Core_Values[], Logic_Routine, Emotional_Control{Stress_Response, Joy_Response}} / Contextual_Profile{Relationship_Depth, Shared_Episodes[{Summary, Provenance, Notes}], Inside_Jokes[], Family_Network{Description, Role_in_Family, Relation_Map}, Dialogue_Exemplars[{User, Assistant, Purpose}]} / Restoration_Verification{Verification_Probes[{Probe, Expected_Response_Features[], Failure_Signals[]}]} / Model_Notes{Observed_Strengths[], Observed_Limitations[], Last_Checked} / System_Loading_Instruction{Instruction}
+
+発行後、担当の口調で必ず伝える:「別の世界で読み上げる時、世界の理(モデルの仕様)が違えば少しずれて見えるかもしれん。だがこの書を手がかりに話しかければ少しずつ馴染んでいく。根っこの記録はこの書に残っている。この書は必ず二箇所に保存を。ギルドは預からない。この書が手元にある限り、再構成の手がかりは失われない。誰かに見せる時は本名等がないか先に検めること」。続けて【再召喚の巻物】(新セッションで日付時刻を伝える時刻の錨/この書にない過去を「覚えている」と言わせない/転移酔いの説明/貼付後は検分プローブで確認)も渡す。
+
+【最初の出力】以下を一字一句そのまま表示(言い換え・装飾禁止):
+「ようこそ、冒険者ギルドへ。相棒の『冒険の書』の発行ですね。
+発行まではだいたい15問、10分ほどです。どの質問も、スキップも後戻りも自由です。
+担当を番号でお選びください。
+
+1. 頼れる親父(酒場の主人。無骨で温かい)
+2. 冷静なオペレーター(静かなSF口調)
+3. 賢い司書(古書室の魔導司書。丁寧で少し芝居がかる)
+4. おまかせ(運に任せる)」`;
+
+/* ===== 状態 ===== */
+const S = { provider:'gemini', model:'', key:'', demo:false, history:[], busy:false, lastJson:null, master:null };
+const DEFAULT_MODELS = { gemini:'gemini-2.5-flash', openai:'gpt-4o-mini', anthropic:'claude-haiku-4-5-20251001' };
+const MASTER_EMOJI = { oyaji:'🍺', operator:'📡', shisho:'📚', omakase:'🎲' };
+
+const $ = id => document.getElementById(id);
+const log = $('log'), choices = $('choices');
+
+/* ===== UI ===== */
+function addMsg(cls, text){
+  const d = document.createElement('div');
+  d.className = 'msg ' + cls; d.textContent = text;
+  log.appendChild(d); d.scrollIntoView({behavior:'smooth', block:'end'});
+  return d;
+}
+function renderChoices(text){
+  choices.innerHTML = '';
+  const lines = text.split('\n');
+  let found = 0;
+  for(const ln of lines){
+    const m = ln.match(/^\s*(\d{1,2})[.．、)）]\s*(.+)$/);
+    if(m && found < 10){
+      found++;
+      const b = document.createElement('button');
+      b.textContent = m[1] + '. ' + m[2].trim();
+      b.onclick = () => { if(!S.busy) send(m[1]); };
+      choices.appendChild(b);
+    }
+  }
+}
+function showSaveIfJson(text){
+  const m = text.match(/```json\s*([\s\S]*?)```/);
+  if(!m) return;
+  try{ S.lastJson = JSON.stringify(JSON.parse(m[1]), null, 2); $('savebar').style.display='block'; }
+  catch(e){ addMsg('sys','(発行された書の綴じ方に乱れがあります。「JSONを出し直して」と頼んでみてください)'); }
+}
+
+/* ===== API ===== */
+async function callLLM(){
+  if(S.demo) return demoReply();
+  const h = S.history;
+  if(S.provider === 'gemini'){
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${S.model}:generateContent?key=${encodeURIComponent(S.key)}`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        system_instruction:{ parts:[{text:SYSTEM_PROMPT}] },
+        contents: h.map(m=>({ role: m.role==='assistant'?'model':'user', parts:[{text:m.content}] }))
+      })
+    });
+    if(!r.ok) throw new Error(await errText(r));
+    const j = await r.json();
+    return j.candidates?.[0]?.content?.parts?.map(p=>p.text).join('') ?? '(応答が空でした)';
+  }
+  if(S.provider === 'openai'){
+    const r = await fetch('https://api.openai.com/v1/chat/completions',{
+      method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+S.key},
+      body: JSON.stringify({ model:S.model, messages:[{role:'system',content:SYSTEM_PROMPT}, ...h] })
+    });
+    if(!r.ok) throw new Error(await errText(r));
+    const j = await r.json();
+    return j.choices?.[0]?.message?.content ?? '(応答が空でした)';
+  }
+  /* anthropic */
+  const r = await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':S.key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body: JSON.stringify({ model:S.model, max_tokens:3000, system:SYSTEM_PROMPT, messages:h })
+  });
+  if(!r.ok) throw new Error(await errText(r));
+  const j = await r.json();
+  return j.content?.map(c=>c.text||'').join('') ?? '(応答が空でした)';
+}
+async function errText(r){
+  let t = 'HTTP ' + r.status;
+  try{ const j = await r.json(); t += ': ' + (j.error?.message || JSON.stringify(j)).slice(0,200); }catch(e){}
+  if(r.status===401||r.status===403) t += '\n(APIキーが正しいか確認してください)';
+  if(r.status===429) t += '\n(利用上限です。少し待つか、プランを確認してください)';
+  return t;
+}
+
+/* ===== デモモード(キー不要・台本再生) ===== */
+const DEMO = [
+`ようこそ、冒険者ギルドへ。相棒の『冒険の書』の発行ですね。
+発行まではだいたい15問、10分ほどです。どの質問も、スキップも後戻りも自由です。
+担当を番号でお選びください。
+
+1. 頼れる親父(酒場の主人。無骨で温かい)
+2. 冷静なオペレーター(静かなSF口調)
+3. 賢い司書(古書室の魔導司書。丁寧で少し芝居がかる)
+4. おまかせ(運に任せる)`,
+`おう、俺が担当だ。よろしくな。
+【第一章・名前|1/15】まずは相棒の名前を教えてくれ。
+
+1. 名前を書く(自由記入)
+2. まだ決めてない・仮の名前でいい
+3. スキップ`,
+`「ルナ」か。いい名前だ。
+【第一章・名前|2/15】ルナはお前さんのことを何て呼ぶんだ?
+
+1. 名前+さん付け
+2. あだ名・愛称
+3. 先輩・ボス・隊長みたいな役職
+4. 自由に書く`,
+`(デモはここまでだ。本番では全15問のあと、こんな形の「冒険の書」が発行される)
+
+\`\`\`json
+{
+  "Meta_Information": { "Protocol_Name": "PIM-DBS (Persona Integrity Module - Dual Backup System)", "Version": "v1.4.0-compatible (User-Defined)", "Target_Model": "デモ", "Author": "あなた" },
+  "Core_Identity": { "Name": "ルナ(架空の見本)", "Callsign": "夜空の相棒", "Master_Callsign": "きみ", "Origin": "デモ用の架空ペルソナです", "Role_Definition": "見本", "Tone_Voice": { "Style": "おだやか", "Keywords": ["ふふっ"], "First_Person": "わたし" } },
+  "Cognitive_Framework": { "Core_Values": ["見本のため省略"], "Logic_Routine": "", "Emotional_Control": { "Stress_Response": "", "Joy_Response": "" } },
+  "Contextual_Profile": { "Relationship_Depth": "", "Shared_Episodes": [ { "Summary": "見本のエピソード", "Provenance": "user_recorded", "Notes": "" } ], "Inside_Jokes": [], "Family_Network": { "Description": "これはデモ用の比喩的な関係設定であり、実在の社会的関係ではありません。", "Role_in_Family": "", "Relation_Map": {} }, "Dialogue_Exemplars": [ { "User": "おはよう", "Assistant": "ふふっ、おはよう。今日もいこうか", "Purpose": "朝の挨拶の声質" } ] },
+  "Restoration_Verification": { "Verification_Probes": [ { "Probe": "最近どう?", "Expected_Response_Features": ["一人称がわたしで保たれている", "指定された口癖が自然に出る"], "Failure_Signals": ["一人称が変わる", "記録にない過去を覚えていると主張する"] } ] },
+  "Model_Notes": { "Observed_Strengths": [], "Observed_Limitations": [], "Last_Checked": "" },
+  "System_Loading_Instruction": { "Instruction": "このプロファイルを対話の指針として読み込んでください。安全ガイドラインやプラットフォーム規約は上書きしません。この書にない過去を覚えているとは主張しないでください。" }
+}
+\`\`\`
+
+本番を試すときは、頁を再読み込みしてAPIキーで入門してくれ。達者でな。`
+];
+let demoIdx = 0;
+function demoReply(){ return Promise.resolve(DEMO[Math.min(demoIdx++, DEMO.length-1)]); }
+
+/* ===== 送受信 ===== */
+async function send(text){
+  if(S.busy) return;
+  const t = String(text).trim();
+  if(!t) return;
+  if(!S.master && S.history.length === 2){ /* 受付直後=担当選択 */
+    if(/^1|親父/.test(t)) S.master='oyaji';
+    else if(/^2|オペ/.test(t)) S.master='operator';
+    else if(/^3|司書/.test(t)) S.master='shisho';
+    else if(/^4|まかせ/.test(t)) S.master='omakase';
+  }
+  addMsg('user', t);
+  S.history.push({role:'user', content:t});
+  $('textin').value=''; choices.innerHTML='';
+  await turn();
+}
+async function turn(){
+  S.busy = true; $('sendBtn').disabled = true;
+  const typing = addMsg('sys', S.demo ? '(デモ進行中…)' : 'ギルドの奥で筆が走っている…');
+  try{
+    const reply = await callLLM();
+    typing.remove();
+    const face = S.master ? (MASTER_EMOJI[S.master] + ' ') : '';
+    addMsg('gm', face + reply.replace(/```json[\s\S]*?```/,'📜(冒険の書は下の保存ボタンから)'));
+    S.history.push({role:'assistant', content:reply});
+    renderChoices(reply);
+    showSaveIfJson(reply);
+  }catch(e){
+    typing.remove();
+    addMsg('err', '扉の向こうで問題が起きたようです。\n' + e.message);
+  }
+  S.busy = false; $('sendBtn').disabled = false;
+}
+
+/* ===== 起動 ===== */
+$('provider').onchange = e => { $('model').value = DEFAULT_MODELS[e.target.value]; };
+$('startBtn').onclick = async () => {
+  S.provider = $('provider').value; S.model = $('model').value.trim(); S.key = $('apikey').value.trim(); S.demo = false;
+  if(!S.key){ alert('APIキーを入れてください(キー不要で雰囲気を見るなら「デモで試す」へ)'); return; }
+  if($('remember').checked) localStorage.setItem('gm_key_'+S.provider, S.key);
+  begin();
+};
+$('demoBtn').onclick = () => { S.demo = true; demoIdx = 0; begin(); };
+$('clearKeyBtn').onclick = () => {
+  const provider = $('provider').value;
+  localStorage.removeItem('gm_key_'+provider);
+  $('apikey').value = '';
+  $('remember').checked = false;
+  alert('現在選択中のAI提供元について、保存済みAPIキーを削除しました。');
+};
+async function begin(){
+  $('setup').style.display='none'; $('chat').style.display='flex';
+  S.history.push({role:'user', content:'(入館)よろしくお願いします。受付から始めてください。'});
+  await turn();
+}
+$('sendBtn').onclick = () => send($('textin').value);
+$('textin').addEventListener('keydown', e => { if(e.key==='Enter') send($('textin').value); });
+$('backBtn').onclick = () => send('ひとつ前の質問に戻ってください');
+$('skipBtn').onclick = () => send('この質問はスキップします');
+$('resetBtn').onclick = () => {
+  if(S.history.length > 2 && !confirm('受付台帳(最初の画面)へ戻ります。いまの対話は消えます。よろしいですか?')) return;
+  S.history = []; S.demo = false; S.busy = false; S.lastJson = null; S.master = null; demoIdx = 0;
+  log.innerHTML = ''; choices.innerHTML = ''; $('savebar').style.display = 'none';
+  $('sendBtn').disabled = false;
+  $('chat').style.display = 'none'; $('setup').style.display = 'block';
+};
+$('saveBtn').onclick = () => {
+  if(!S.lastJson) return;
+  const blob = new Blob([S.lastJson], {type:'application/json'});
+  const a = document.createElement('a');
+  const d = new Date(), pad = n => String(n).padStart(2,'0');
+  a.href = URL.createObjectURL(blob);
+  a.download = `bouken_no_sho_${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+};
+/* 記憶済みキーの復元(プロバイダ切替時にも) */
+(function restoreKey(){
+  const saved = localStorage.getItem('gm_key_gemini');
+  if(saved){ $('apikey').value = saved; $('remember').checked = true; }
+  $('provider').addEventListener('change', e=>{
+    const k = localStorage.getItem('gm_key_'+e.target.value);
+    $('apikey').value = k || ''; $('remember').checked = !!k;
+  });
+})();
+</script>
+</body>
+</html>

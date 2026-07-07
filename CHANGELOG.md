@@ -1,6 +1,18 @@
 # Changelog
 
-PIM-DBS v1.4 is an operational observation release. It focuses on observable response changes and user-side responses, without introducing CLI Observation Bands or v2.0 architecture changes.
+PIM-DBS v1.5 is a guided profile creation demo release. It adds Guild Master Demo materials without introducing CLI Observation Bands, JSON template schema changes, or v2.0 architecture changes.
+
+## v1.5.0 - Unreleased
+
+### Added
+- Guild Master Demo HTML version for guided browser-based profile creation.
+- Guild Master Prompt version for chat-based guided profile creation.
+
+### Scope
+- Focused on guided profile creation demos.
+- No CLI Observation Bands are included.
+- No v2.0 architecture changes are included.
+- No JSON template schema change is included.
 
 ## v1.4.0 - 2026-07-07
 

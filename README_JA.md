@@ -35,6 +35,10 @@
 - ❓ **FAQ:** [docs/faq_ja.md](docs/faq_ja.md)
 - 💬 **Discussion Prompts:** [docs/discussion_prompts_ja.md](docs/discussion_prompts_ja.md)
 
+**デモ**
+- 🏰 **Guild Master Demo:** [tools/guild_master.html](tools/guild_master.html) — ブラウザで「冒険の書」形式のPIM-DBSプロファイルを作成できる対話型デモ。
+- 📝 **Guild Masterプロンプト:** [templates/guild_master_prompt.md](templates/guild_master_prompt.md) — AIチャットに貼って使うプロンプト版。
+
 **テンプレート**
 - 🧩 **JSONテンプレート:** [templates/pim-dbs_template.json](templates/pim-dbs_template.json)
 - 🧩 **Markdownテンプレート:** [templates/persona_profile_template.md](templates/persona_profile_template.md)
@@ -48,6 +52,13 @@
 - 📘 **English README:** [README.md](README.md)
 - 📚 **用語集（日本語）:** [docs/glossary_ja.md](docs/glossary_ja.md)
 - 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
+
+---
+
+## 🏰 Guild Master Demo 注意
+HTML版 Guild Master Demo は、BYOK型の実験デモです。APIキーを使う場合、会話内容とAPIキーはブラウザから選択したAI提供元へ送信されます。ページ運営者や「ギルド側」は、発行されたJSONプロファイルを預かりません。
+
+不安な場合は、まずキー不要のデモモードを使ってください。生成されたJSONを公開する前に、個人情報、非公開の会話内容、繊細な文脈が含まれていないか確認してください。
 
 ---
 
