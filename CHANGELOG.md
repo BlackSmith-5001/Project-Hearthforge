@@ -2,7 +2,7 @@
 
 PIM-DBS v1.4 is an operational observation release. It focuses on observable response changes and user-side responses, without introducing CLI Observation Bands or v2.0 architecture changes.
 
-## v1.4.0 - Unreleased
+## v1.4.0 - 2026-07-07
 
 ### Added
 - Response Change Catalog documents in English and Japanese.
@@ -14,8 +14,6 @@ PIM-DBS v1.4 is an operational observation release. It focuses on observable res
 ### Scope
 - Kept v1.4.0 focused on observed response changes and user-side responses.
 - CLI Observation Bands and v2.0 architecture changes are not included.
-
-## v1.3.0 - 2026-07-07
 
 ## v1.3.0 - 2026-07-07
 
