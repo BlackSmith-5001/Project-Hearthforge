@@ -48,6 +48,8 @@ private instance は、記入済みのプロフィールです。個人的な文
 
 検分は、AI の隠れた内部記憶を確認するものではありません。再読込したプロフィールが、期待する応答スタイル、境界線、役割設定を再構成できているかを見るものです。詳しくは [Restoration Verification 記入例](restoration_verification_example_ja.md) を参照してください。
 
+再読込後の応答が不安定に見える、または期待とずれて見える場合は、観測できる応答変化とユーザー側の対処を整理した [応答変化カタログ](response_change_catalog_ja.md) も参照してください。
+
 ## PIM-DBS は prompt injection ですか？
 
 いいえ。PIM-DBS は、システム指示、安全ガイドライン、プラットフォーム規約、開発者指示を上書きするためのものではありません。

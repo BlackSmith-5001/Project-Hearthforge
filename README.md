@@ -32,6 +32,7 @@ For a first PIM-DBS profile, follow this path:
 - 🧭 **JSON Guide:** [docs/json_guide_en.md](docs/json_guide_en.md)
 - 🔨 **Self-Forge Guide:** [docs/self_forge_guide_en.md](docs/self_forge_guide_en.md)
 - ✅ **Restoration Verification Example:** [docs/restoration_verification_example_en.md](docs/restoration_verification_example_en.md)
+- 📊 **Response Change Catalog:** [docs/response_change_catalog_en.md](docs/response_change_catalog_en.md)
 - ❓ **FAQ:** [docs/faq_en.md](docs/faq_en.md)
 - 💬 **Discussion Prompts:** [docs/discussion_prompts_en.md](docs/discussion_prompts_en.md)
 

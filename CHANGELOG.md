@@ -1,6 +1,21 @@
 # Changelog
 
-PIM-DBS v1.3 is a lightweight external-readiness release. It focuses on FAQ, discussion materials, and a lightweight Temporal Anchor note, without introducing v2.0 architecture changes.
+PIM-DBS v1.4 is an operational observation release. It focuses on observable response changes and user-side responses, without introducing CLI Observation Bands or v2.0 architecture changes.
+
+## v1.4.0 - Unreleased
+
+### Added
+- Response Change Catalog documents in English and Japanese.
+
+### Changed
+- README (EN/JA): added Response Change Catalog to the Quick Links.
+- FAQ (EN/JA): added a pointer to the Response Change Catalog for unstable or mismatched responses.
+
+### Scope
+- Kept v1.4.0 focused on observed response changes and user-side responses.
+- CLI Observation Bands and v2.0 architecture changes are not included.
+
+## v1.3.0 - 2026-07-07
 
 ## v1.3.0 - 2026-07-07
 

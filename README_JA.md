@@ -31,6 +31,7 @@
 - 🧭 **JSONガイド:** [docs/json_guide_ja.md](docs/json_guide_ja.md)
 - 🔨 **Self-Forgeガイド:** [docs/self_forge_guide_ja.md](docs/self_forge_guide_ja.md)
 - ✅ **Restoration Verification 記入例:** [docs/restoration_verification_example_ja.md](docs/restoration_verification_example_ja.md)
+- 📊 **応答変化カタログ:** [docs/response_change_catalog_ja.md](docs/response_change_catalog_ja.md)
 - ❓ **FAQ:** [docs/faq_ja.md](docs/faq_ja.md)
 - 💬 **Discussion Prompts:** [docs/discussion_prompts_ja.md](docs/discussion_prompts_ja.md)
 

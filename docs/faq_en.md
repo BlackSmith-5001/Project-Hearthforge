@@ -48,6 +48,8 @@ Use `Restoration_Verification` fields such as `Verification_Probes`, `Expected_R
 
 Verification does not check hidden AI memory. It checks whether the reloaded profile produces the expected response style, boundaries, and role framing. See [Restoration Verification Example](restoration_verification_example_en.md).
 
+If responses feel unstable, erratic, or mismatched after reload, see the [Response Change Catalog](response_change_catalog_en.md) for observable changes and user-side responses.
+
 ## Is PIM-DBS prompt injection?
 
 No. PIM-DBS is not intended to override system instructions, safety guidelines, platform terms, or developer instructions.
