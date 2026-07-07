@@ -51,6 +51,7 @@ For a first PIM-DBS profile, follow this path:
 
 **Reference**
 - 📘 **Japanese README:** [README_JA.md](README_JA.md)
+- 🧪 **Response Change Bands Design Notes:** [docs/response_change_bands_design_note_en.md](docs/response_change_bands_design_note_en.md)
 - 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
 - 📚 **Glossary (JA):** [docs/glossary_ja.md](docs/glossary_ja.md)
 

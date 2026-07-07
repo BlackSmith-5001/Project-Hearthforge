@@ -50,6 +50,7 @@
 
 **リファレンス**
 - 📘 **English README:** [README.md](README.md)
+- 🧪 **Response Change Bands 設計メモ / 応答変化帯域 設計メモ:** [docs/response_change_bands_design_note_ja.md](docs/response_change_bands_design_note_ja.md)
 - 📚 **用語集（日本語）:** [docs/glossary_ja.md](docs/glossary_ja.md)
 - 📚 **Glossary (EN):** [docs/glossary_en.md](docs/glossary_en.md)
 
