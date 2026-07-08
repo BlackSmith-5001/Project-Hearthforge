@@ -1,8 +1,8 @@
 # Changelog
 
-PIM-DBS v1.5 is a guided profile creation demo release. It adds Guild Master Demo materials without introducing CLI Observation Bands, JSON template schema changes, or v2.0 architecture changes.
+PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
-## v1.6.0 - Unreleased
+## v1.6.0 - 2026-07-08
 
 ### Added
 - Response Change Bands formal guides in English and Japanese.
