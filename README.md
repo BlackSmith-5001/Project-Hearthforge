@@ -37,7 +37,7 @@ For a first PIM-DBS profile, follow this path:
 - 💬 **Discussion Prompts:** [docs/discussion_prompts_en.md](docs/discussion_prompts_en.md)
 
 **Demos**
-- 🏰 **Guild Master Demo:** [tools/guild_master.html](tools/guild_master.html) — an interactive browser demo for creating an "adventurer's log" PIM-DBS profile.
+- 🏰 **Guild Master Demo:** [Live Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master.html) / [source](tools/guild_master.html) — an interactive browser demo for creating an "adventurer's log" PIM-DBS profile.
 - 📝 **Guild Master Prompt:** [templates/guild_master_prompt.md](templates/guild_master_prompt.md) — a prompt-only version you can paste into a chat.
 
 **Templates**
@@ -58,6 +58,8 @@ For a first PIM-DBS profile, follow this path:
 
 ## 🏰 Guild Master Demo Note
 The HTML Guild Master Demo is an experimental BYOK tool. When using an API key, your conversation content and API key are sent from your browser to the selected AI provider; the page operator or "guild" does not store the issued JSON profile.
+
+If the live demo does not work, download [tools/guild_master.html](tools/guild_master.html) and open it directly in your browser. Browser-based API calls may be affected by the browser, each provider's API behavior, or CORS policy.
 
 If you are unsure, use the key-free demo mode first. Before publishing any generated JSON, review it for personal information, private conversation details, or sensitive context.
 

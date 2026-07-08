@@ -2,6 +2,18 @@
 
 PIM-DBS v1.5 is a guided profile creation demo release. It adds Guild Master Demo materials without introducing CLI Observation Bands, JSON template schema changes, or v2.0 architecture changes.
 
+## v1.5.1 - Unreleased
+
+### Changed
+- README (EN/JA): added the GitHub Pages live demo link for the Guild Master Demo.
+- README (EN/JA): kept the local source link and added fallback guidance for downloading and opening the HTML file directly.
+- README (EN/JA): clarified that browser-based BYOK API calls may be affected by provider API behavior or CORS policy.
+- Guild Master Prompt: softened the note about future Dialogue Exemplars provenance support.
+
+### Scope
+- Focused on Guild Master Demo discoverability and safety wording.
+- No RCB formal migration, CLI Observation Bands, Glossary changes, JSON template changes, or v2.0 architecture changes are included.
+
 ## v1.5.0 - 2026-07-07
 
 ### Added

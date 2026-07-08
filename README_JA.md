@@ -36,7 +36,7 @@
 - 💬 **Discussion Prompts:** [docs/discussion_prompts_ja.md](docs/discussion_prompts_ja.md)
 
 **デモ**
-- 🏰 **Guild Master Demo:** [tools/guild_master.html](tools/guild_master.html) — ブラウザで「冒険の書」形式のPIM-DBSプロファイルを作成できる対話型デモ。
+- 🏰 **Guild Master Demo:** [Live Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master.html) / [ソース](tools/guild_master.html) — ブラウザで「冒険の書」形式のPIM-DBSプロファイルを作成できる対話型デモ。
 - 📝 **Guild Masterプロンプト:** [templates/guild_master_prompt.md](templates/guild_master_prompt.md) — AIチャットに貼って使うプロンプト版。
 
 **テンプレート**
@@ -57,6 +57,8 @@
 
 ## 🏰 Guild Master Demo 注意
 HTML版 Guild Master Demo は、BYOK型の実験デモです。APIキーを使う場合、会話内容とAPIキーはブラウザから選択したAI提供元へ送信されます。ページ運営者や「ギルド側」は、発行されたJSONプロファイルを預かりません。
+
+Live Demo が動かない場合は、[tools/guild_master.html](tools/guild_master.html) をダウンロードしてブラウザで直接開いてください。ブラウザ上のAPI直叩きは、ブラウザ、各社API仕様、CORSポリシーの影響を受ける場合があります。
 
 不安な場合は、まずキー不要のデモモードを使ってください。生成されたJSONを公開する前に、個人情報、非公開の会話内容、繊細な文脈が含まれていないか確認してください。
 

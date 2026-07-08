@@ -6,7 +6,7 @@
 **対象スキーマ**: PIM-DBS v1.4.0(templates/pim-dbs_template.json)
 **保守メモ**: スキーマの正はリポジトリのテンプレート。テンプレート更新時はこのファイルの「冒険の書の構造」節も同期すること。
 **v0.2変更**: 進行度表示・毎問の戻る/スキップ・呼び名の例の中立化・口上の安全側修正(再構成の手がかり表現)・Provenance(出所)対応。
-**v0.3変更**: 実テンプレ照合(CODEX)反映——Shared_Episodesをオブジェクト形式{Summary, Provenance, Notes}に修正/Dialogue_ExemplarsからProvenanceを除外(v1.5でのテンプレ正式追加を提案中)/受付と選択場面を「番号付き選択肢・一字一句そのまま表示」に固定。
+**v0.3変更**: 実テンプレ照合(CODEX)反映——Shared_Episodesをオブジェクト形式{Summary, Provenance, Notes}に修正/Dialogue_ExemplarsからProvenanceを除外(将来のテンプレート更新で検討)/受付と選択場面を「番号付き選択肢・一字一句そのまま表示」に固定。
 
 **使い方**
 1. 下の区切り線から末尾までを全部コピーする
