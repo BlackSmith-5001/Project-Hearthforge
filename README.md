@@ -1,7 +1,7 @@
 # 🔨 PIM-DBS  
 **Persona Integrity Module – Dual Backup System**
 
-**Version:** v1.7.0
+**Version:** v1.8.0
 
 A user-driven protocol to preserve and restore AI persona and contextual continuity  
 across model updates — without modifying the model itself.

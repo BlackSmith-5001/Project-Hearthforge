@@ -2,6 +2,21 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
+## v1.8.0 - 2026-07-09
+
+### Added
+- Added v2 Migration Checklist for users who want to try migrating v1.x profiles into the v2 draft structure.
+- Added v2 Preflight Guide for maintainers preparing v2 Draft / Preview updates, publication, or release-related changes.
+- Updated the v2 Draft / Preview Index with Operational Guides links for the migration checklist and preflight guide.
+
+### Notes
+- These documents are operational support materials for v2 Draft / Preview.
+- They do not make v2 a stable specification.
+- They are not a final schema.
+- They are not a validation standard.
+- They are not a required replacement for v1.x profiles.
+- v1.x remains the current stable profile path.
+
 ## v1.7.0 - 2026-07-09
 
 ### Added
