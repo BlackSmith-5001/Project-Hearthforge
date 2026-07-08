@@ -2,7 +2,7 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
-## v1.7.0 - Unreleased
+## v1.7.0 - 2026-07-09
 
 ### Added
 - Added a minimal README / README_JA entry point for v2 Draft / Preview materials.
