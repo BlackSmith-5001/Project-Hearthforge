@@ -16,7 +16,7 @@ This index explains:
 - what is intentionally not included yet
 - which safety boundaries remain fixed across the design work
 
-README and CHANGELOG links are intentionally not added yet.
+README uses this index as the minimal v2 Draft / Preview entry point. Individual v2 notes are not listed directly in README.
 
 ## 2. Current Status
 
@@ -24,7 +24,7 @@ README and CHANGELOG links are intentionally not added yet.
 - The v2 draft template is a non-normative draft.
 - The v1.x canonical template remains valid.
 - The v2 draft is not a required replacement for v1.x profiles.
-- README and CHANGELOG do not yet include formal v2.0 navigation.
+- README uses the v2 index as a minimal v2 Draft / Preview entry point.
 - The v2 materials are design and review artifacts unless otherwise noted.
 
 ## 3. Recommended Reading Order
@@ -37,8 +37,10 @@ README and CHANGELOG links are intentionally not added yet.
 6. [Draft Template Decisions Note](v2_draft_template_decisions_en.md)
 7. [v2 Draft Template](../templates/pim-dbs_v2_draft.json)
 8. [Migration Guidance Note](v2_migration_guidance_note_en.md)
+9. [Migration Checklist](v2_migration_checklist_en.md)
+10. [Preflight Guide](v2_preflight_guide_en.md)
 
-This order starts with purpose and scope, then moves through mapping, public example safety, sample shape, template decisions, the draft itself, and finally migration guidance.
+This order starts with purpose and scope, then moves through mapping, public example safety, sample shape, template decisions, the draft itself, migration guidance, and operational checks.
 
 ## 4. File Roles
 
@@ -52,6 +54,8 @@ This order starts with purpose and scope, then moves through mapping, public exa
 | [Draft Template Decisions Note](v2_draft_template_decisions_en.md) | Records provisional decisions made before creating the first v2 draft template. |
 | [v2 Draft Template](../templates/pim-dbs_v2_draft.json) | Provides the current non-normative single-JSON draft template. |
 | [Migration Guidance Note](v2_migration_guidance_note_en.md) | Explains optional migration from v1.x to the v2 draft without invalidating v1.x. |
+| [Migration Checklist](v2_migration_checklist_en.md) | Provides a safety checklist for users who want to try optional v1.x to v2 draft migration. |
+| [Preflight Guide](v2_preflight_guide_en.md) | Provides maintainer checks before updating, exposing, or preparing release links for v2 Draft / Preview materials. |
 
 ## 5. Design Notes
 
@@ -66,7 +70,16 @@ They clarify intent before implementation:
 - treating `calibration` as user-side verification and observation
 - preserving the v1.x path
 
-## 6. Draft Template
+## 6. Operational Guides
+
+Operational guides are support documents for people using or maintaining the v2 Draft / Preview materials.
+
+They do not make v2.0 a stable specification:
+
+- [Migration Checklist](v2_migration_checklist_en.md) helps users try optional migration from v1.x to the v2 draft while keeping private-only material out of public files.
+- [Preflight Guide](v2_preflight_guide_en.md) helps maintainers check safety, links, canonical-template preservation, and EN/JA consistency before exposing v2 materials more broadly.
+
+## 7. Draft Template
 
 The draft template is:
 
@@ -87,7 +100,7 @@ Current top-level sections:
 
 The v1.x canonical template is not changed by this draft.
 
-## 7. What Is Not Included Yet
+## 8. What Is Not Included Yet
 
 The current v2.0 materials do not include:
 
@@ -102,7 +115,7 @@ The current v2.0 materials do not include:
 
 These may be considered later, but they are not part of the current v2 design set.
 
-## 8. Safety Boundaries
+## 9. Safety Boundaries
 
 Across all v2.0 materials:
 
@@ -114,7 +127,7 @@ Across all v2.0 materials:
 - Keep System Loading Instruction below safety guidelines, platform terms, and higher-priority instructions.
 - Do not treat v1.x as deprecated.
 
-## 9. Suggested Next Steps
+## 10. Suggested Next Steps
 
 Possible next steps:
 
