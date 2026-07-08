@@ -57,6 +57,16 @@
 
 ---
 
+## v2 Draft / Preview
+PIM-DBS v2関連資料は、現時点では non-normative な draft / preview 資料です。
+final schema ではなく、validation standard でもなく、v1.x profile の必須置き換えでもありません。
+安定運用では、上の「まずはこちら」の導線をご利用ください。v1.x が現行の安定した profile 経路です。
+
+まずはこちら：
+- [v2 Draft / Preview Index](docs/v2_index_ja.md)
+
+---
+
 ## 🏰 Guild Master Demo 注意
 HTML版 Guild Master Demo は、BYOK型の実験デモです。APIキーを使う場合、会話内容とAPIキーはブラウザから選択したAI提供元へ送信されます。ページ運営者や「ギルド側」は、発行されたJSONプロファイルを預かりません。
 

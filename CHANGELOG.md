@@ -2,6 +2,19 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
+## v1.7.0 - Unreleased
+
+### Added
+- Added a minimal README / README_JA entry point for v2 Draft / Preview materials.
+- Added v2 Draft / Preview Index as the recommended starting point for v2 design materials.
+
+### Notes
+- v2 materials are non-normative draft / preview materials.
+- They are not a final schema.
+- They are not a validation standard.
+- They are not a required replacement for v1.x profiles.
+- v1.x remains the current stable profile path.
+
 ## v1.6.0 - 2026-07-08
 
 ### Added

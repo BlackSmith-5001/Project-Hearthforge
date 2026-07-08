@@ -58,6 +58,16 @@ For a first PIM-DBS profile, follow this path:
 
 ---
 
+## v2 Draft / Preview
+PIM-DBS v2 materials are currently provided as non-normative draft / preview materials.
+They are not a final schema, not a validation standard, and not a required replacement for v1.x profiles.
+For stable use, follow the Start Here flow above; v1.x remains the current stable profile path.
+
+Start here:
+- [v2 Draft / Preview Index](docs/v2_index_en.md)
+
+---
+
 ## 🏰 Guild Master Demo Note
 The HTML Guild Master Demo is an experimental BYOK tool. When using an API key, your conversation content and API key are sent from your browser to the selected AI provider; the page operator or "guild" does not store the issued JSON profile.
 
