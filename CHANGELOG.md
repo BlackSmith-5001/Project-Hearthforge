@@ -2,7 +2,7 @@
 
 PIM-DBS v1.5 is a guided profile creation demo release. It adds Guild Master Demo materials without introducing CLI Observation Bands, JSON template schema changes, or v2.0 architecture changes.
 
-## v1.5.2 - Unreleased
+## v1.5.2 - 2026-07-08
 
 ### Added
 - Response Change Bands design notes in English and Japanese.
