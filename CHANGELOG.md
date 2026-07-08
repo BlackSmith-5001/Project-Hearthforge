@@ -2,6 +2,26 @@
 
 PIM-DBS v1.5 is a guided profile creation demo release. It adds Guild Master Demo materials without introducing CLI Observation Bands, JSON template schema changes, or v2.0 architecture changes.
 
+## v1.6.0 - Unreleased
+
+### Added
+- Response Change Bands formal guides in English and Japanese.
+- Glossary entries for Response Change Bands / RCB.
+- FAQ clarification that RCB is not a measurement of AI internal state.
+- Cross-links between Response Change Catalog and Response Change Bands.
+
+### Changed
+- README (EN/JA): added Response Change Bands to Guides while keeping the design notes under Reference.
+- README (EN/JA): updated the older CLI architecture wording to RCB.
+- Glossary (EN/JA): marked CLI / Cognitive Load Index as deprecated historical wording.
+
+### Scope
+- Formal RCB migration for user-side response-change observation.
+- No JSON template change.
+- No JSON Schema, probes, or calibration files.
+- No Guild Master Demo changes.
+- No v2.0 architecture changes.
+
 ## v1.5.2 - 2026-07-08
 
 ### Added

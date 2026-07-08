@@ -10,7 +10,7 @@ PIM-DBS は、ユーザー側の文脈プロフィールと再構成手順です
 
 この文書は、そのような変化を観測し、短文化、話題分割、Temporal Anchor（時刻の錨）の再提示、JSON プロファイルの再読込、Restoration Verification の再実施、休憩などの低リスクな対処を試すための簡易表です。
 
-再読込後の検分については [Restoration Verification 記入例](restoration_verification_example_ja.md) を参照してください。JSON プロファイルの使い方については [JSONガイド](json_guide_ja.md) を参照してください。
+再読込後の検分については [Restoration Verification 記入例](restoration_verification_example_ja.md) を参照してください。JSON プロファイルの使い方については [JSONガイド](json_guide_ja.md) を参照してください。短期的な応答変化をユーザー側の粗い帯域に分ける方法については [Response Change Bands](response_change_bands_ja.md) を参照してください。
 
 ## 2. 安全な前提
 
@@ -45,6 +45,8 @@ PIM-DBS は、ユーザー側の文脈プロフィールと再構成手順です
 5. やり取りが感情的に強く感じられたり混乱したりする場合は、文脈をさらに追加する前に休憩します。
 
 このカタログは実用上の補助であり、応答が完全に復元できることを保証するものではありません。
+
+観測できる応答変化を 0〜4 の粗い帯域に分ける方法については、[Response Change Bands](response_change_bands_ja.md) を参照してください。
 
 ## 5. やってはいけないこと
 

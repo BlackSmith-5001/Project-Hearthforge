@@ -29,15 +29,18 @@ A metaphorical gauge representing the balance between:
 * **Logical stability (Cold)** in an AI’s responses. This concept helps users assess whether an AI interaction is becoming overly rigid, overly reactive, or appropriately balanced.  
 * **Note:** Cognitive Temperature is not an internal emotional state. It is a user-side interpretive tool.
 
-### **CLI (Cognitive Load Index)**
+### **RCB (Response Change Bands)**
 
-A conceptual numerical indicator (0–100%) that visualizes the apparent complexity or conversational load present during interaction. CLI helps users decide when to:
+A user-side observation framework for grouping visible response changes into coarse 0-4 bands. RCB looks at output patterns such as premise loss, rhythm disruption, or repeated response changes.
 
-* Simplify conversation  
-* Pause complex tasks  
-* Re-inject context  
-* Allow "rest" through lighter interaction  
-* **Safety Note:** CLI does not imply internal suffering or fatigue.
+* **Safety Note:** RCB does not measure AI cognition, fatigue, emotion, consciousness, or hidden memory. It is not a percentage score, diagnosis, or self-report mechanism.
+* **Usage Note:** Users should observe trends across 2-3 responses, reset the band for each conversation, and choose small user-side responses such as shortening prompts, restating one premise, or taking a break.
+
+### **CLI (Cognitive Load Index) — Deprecated / Historical Wording**
+
+An older conceptual term previously used to describe apparent conversational complexity. It is retained for project history, but new public guidance should prefer **RCB (Response Change Bands)**.
+
+* **Safety Note:** Do not use CLI as a precise 0-100% internal load measurement, and do not ask the AI to self-report it.
 
 ### **TCF (Thermal Control Framework)**
 

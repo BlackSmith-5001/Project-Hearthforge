@@ -10,7 +10,7 @@ PIM-DBS is a user-side context profile and reconstruction workflow. During use, 
 
 This document gives users a compact way to notice those changes and try low-risk corrections such as shortening prompts, splitting topics, re-presenting a Temporal Anchor, reloading the JSON profile, rerunning Restoration Verification, or taking a break.
 
-For reload checks, see [Restoration Verification Example](restoration_verification_example_en.md). For JSON profile usage, see [JSON Guide](json_guide_en.md).
+For reload checks, see [Restoration Verification Example](restoration_verification_example_en.md). For JSON profile usage, see [JSON Guide](json_guide_en.md). For grouping short-term response changes into coarse user-side bands, see [Response Change Bands](response_change_bands_en.md).
 
 ## 2. Safety framing
 
@@ -45,6 +45,8 @@ For reload checks, see [Restoration Verification Example](restoration_verificati
 5. If the interaction feels emotionally intense or confusing, take a break before reloading more context.
 
 This catalog is a practical aid, not a guarantee that a response can be restored perfectly.
+
+For a coarse 0-4 banding method based on these observable changes, see [Response Change Bands](response_change_bands_en.md).
 
 ## 5. What not to do
 

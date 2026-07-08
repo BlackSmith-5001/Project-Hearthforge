@@ -33,6 +33,7 @@ For a first PIM-DBS profile, follow this path:
 - 🔨 **Self-Forge Guide:** [docs/self_forge_guide_en.md](docs/self_forge_guide_en.md)
 - ✅ **Restoration Verification Example:** [docs/restoration_verification_example_en.md](docs/restoration_verification_example_en.md)
 - 📊 **Response Change Catalog:** [docs/response_change_catalog_en.md](docs/response_change_catalog_en.md)
+- 📈 **Response Change Bands:** [docs/response_change_bands_en.md](docs/response_change_bands_en.md)
 - ❓ **FAQ:** [docs/faq_en.md](docs/faq_en.md)
 - 💬 **Discussion Prompts:** [docs/discussion_prompts_en.md](docs/discussion_prompts_en.md)
 
@@ -115,7 +116,7 @@ PIM-DBS v1.1.0 adds small fields that make restored profiles easier to inspect a
 
 **Restoration Verification** provides probes and expected response features for checking whether the profile was reloaded correctly. **Model Notes** capture model-specific strengths, limitations, and last-check information without claiming hidden model state.
 
-## Architecture: TCF & CLI
+## Architecture: TCF & RCB
 PIM-DBS uses the following conceptual architecture to organize user-side persona context:
 
 ### 🧪 TCF (Thermal Control Framework / Thermos Theory)
@@ -128,9 +129,11 @@ Middle Layer (Control): Converts emotion into stable, reasoned output.
 
 Outer Layer (Safety): Prevents harmful or inappropriate responses.
 
-### 📊 CLI (Cognitive Load Index)
+### 📊 RCB (Response Change Bands)
 
-CLI is a conceptual indicator (0–100%) representing the apparent complexity or conversational load visible in the dialogue. By monitoring this, users can choose lighter interaction: "Let's keep this simple" or "Let's avoid difficult topics." Note: CLI is an inferred signal based on dialogue patterns, not a measured internal value.
+RCB is a user-side observation framework for visible response changes. It uses coarse 0-4 bands, not a percentage score, to help users choose lighter interaction such as "Let's keep this simple" or "Let's focus on one premise." RCB does not measure AI internal state, fatigue, emotion, cognition, or hidden memory.
+
+Historical note: CLI (Cognitive Load Index) is older wording. New guidance should prefer [Response Change Bands](docs/response_change_bands_en.md).
 
 ## Quick Start (Usage: Persona Context Reconstruction)
 Applying PIM-DBS to your AI is simple. No programming knowledge required. Think of JSON as just a "profile notebook (text file)."
@@ -180,7 +183,7 @@ A. Increase Prompt Resolution. Ambiguous inputs lead to unstable output.
 
 Q. Responses feel erratic.
 
-A. CLI may be elevated. Reload the context or reduce conversational complexity.
+A. Check the [Response Change Catalog](docs/response_change_catalog_en.md) and [Response Change Bands](docs/response_change_bands_en.md). RCB is based on observable output changes, not AI self-reported load or internal state.
 
 ## Legal & Ethical Disclaimer
 No Model Modification: PIM-DBS does not modify, access, or interfere with any internal components of large language models (weights, binaries, etc.). It adjusts output solely through creative use of user input (prompts), and does not constitute hacking.

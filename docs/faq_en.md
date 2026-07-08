@@ -50,6 +50,12 @@ Verification does not check hidden AI memory. It checks whether the reloaded pro
 
 If responses feel unstable, erratic, or mismatched after reload, see the [Response Change Catalog](response_change_catalog_en.md) for observable changes and user-side responses.
 
+## Does RCB measure AI internal state?
+
+No. Response Change Bands (RCB) do not measure AI cognition, fatigue, emotion, consciousness, hidden memory, or model health.
+
+RCB is a user-side observation method for visible output changes. It uses coarse 0-4 bands to help users choose small next steps such as shortening a prompt, restating one premise, taking a break, or reloading a profile. Do not ask the AI to self-report its RCB level. See [Response Change Bands](response_change_bands_en.md).
+
 ## Is PIM-DBS prompt injection?
 
 No. PIM-DBS is not intended to override system instructions, safety guidelines, platform terms, or developer instructions.
@@ -72,6 +78,6 @@ PIM-DBS is not:
 - storage for hidden AI memory
 - a guarantee of perfect personality reconstruction
 - permission to publish private conversations or real persona data
-- a v2.0 architecture with schema, CLI, or core / journal / charter separation
+- a v2.0 architecture with schema or core / journal / charter separation
 
 PIM-DBS is a user-side context profile and reconstruction protocol for preserving desired conversation continuity in a safer, inspectable way.
