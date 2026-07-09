@@ -38,12 +38,13 @@ README uses this index as the minimal v2 Draft / Preview entry point. Individual
 7. [Draft Template Decisions Note](v2_draft_template_decisions_en.md)
 8. [Architecture Decision Note](v2_architecture_decision_note_en.md)
 9. [Stabilization Note](v2_stabilization_note_en.md)
-10. [v2 Draft Template](../templates/pim-dbs_v2_draft.json)
-11. [Migration Guidance Note](v2_migration_guidance_note_en.md)
-12. [Migration Checklist](v2_migration_checklist_en.md)
-13. [Preflight Guide](v2_preflight_guide_en.md)
+10. [Stable Specification](v2_stable_specification_en.md)
+11. [v2 Draft Template](../templates/pim-dbs_v2_draft.json)
+12. [Migration Guidance Note](v2_migration_guidance_note_en.md)
+13. [Migration Checklist](v2_migration_checklist_en.md)
+14. [Preflight Guide](v2_preflight_guide_en.md)
 
-This order starts with purpose and scope, then moves through mapping, public example safety, fictional examples, template decisions, architecture direction, stabilization direction, the draft itself, migration guidance, and operational checks.
+This order starts with purpose and scope, then moves through mapping, public example safety, fictional examples, template decisions, architecture direction, stabilization direction, the stable specification, the draft itself, migration guidance, and operational checks.
 
 ## 4. File Roles
 
@@ -58,6 +59,7 @@ This order starts with purpose and scope, then moves through mapping, public exa
 | [Draft Template Decisions Note](v2_draft_template_decisions_en.md) | Records provisional decisions made before creating the first v2 draft template. |
 | [Architecture Decision Note](v2_architecture_decision_note_en.md) | Evaluates the tension between structural separation and single-file kindness, including Option B / Single-File Section Separation as a possible v2.0 baseline. It is not the v2.0 stable specification. |
 | [Stabilization Note](v2_stabilization_note_en.md) | Confirms Option B / Single-File Section Separation as the v2.0 stable baseline while preserving a one-JSON default flow and avoiding v1.x deprecation. It is a stabilization note toward the stable specification, not the specification itself, final schema, or validation standard. |
+| [Stable Specification](v2_stable_specification_en.md) | Defines the converged v2.0 stable specification around Option B / Single-File Section Separation, preserving a one-JSON default flow and repositioning v1.x assets inside v2.0. It is not an exploratory design note, JSON Schema, validation standard, or required replacement for v1.x profiles, and does not deprecate v1.x. |
 | [v2 Draft Template](../templates/pim-dbs_v2_draft.json) | Provides the current non-normative single-JSON draft template. |
 | [Migration Guidance Note](v2_migration_guidance_note_en.md) | Explains optional migration from v1.x to the v2 draft without invalidating v1.x. |
 | [Migration Checklist](v2_migration_checklist_en.md) | Provides a safety checklist for users who want to try optional v1.x to v2 draft migration. |
@@ -76,7 +78,10 @@ They clarify intent before implementation:
 - treating `calibration` as user-side verification and observation
 - evaluating the balance between structural separation and a beginner-friendly single-file default
 - stabilizing Option B / Single-File Section Separation as the v2.0 baseline direction
+- defining the v2.0 stable specification without turning it into JSON Schema or a validation standard
 - preserving the v1.x path
+
+Note: The Stable Specification is not an exploratory design note; it is the converged v2.0 specification document. It is still not a JSON Schema, validation standard, or required replacement for v1.x profiles.
 
 ## 6. Examples
 
