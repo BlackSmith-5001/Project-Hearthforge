@@ -2,6 +2,28 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
+## v2.0.0 - 2026-07-09
+
+### Added
+- Added v2.0 Stable Specification defining Single-File Section Separation as the v2.0 stable baseline.
+- Added v2.0 Stabilization Note confirming Option B / Single-File Section Separation as the v2.0 baseline.
+- Added v2.0 Architecture Decision Note evaluating the design tension between structural separation and single-file accessibility.
+- Updated the v2 Draft / Preview Index with links and status updates for the Architecture Decision Note, Stabilization Note, and Stable Specification.
+
+### Changed
+- Established the v2.0 structure around meta, core, journal, charter, calibration, and system_loading_instruction.
+- Clarified that v2.0 repositions existing v1.x assets instead of redesigning them.
+- Updated v2_index Current Status to reflect that the v2.0 Stable Specification exists.
+
+### Notes
+- v2.0 uses Single-File Section Separation as the stable baseline.
+- The default flow remains one JSON file that users can start with.
+- v2.0 is not a JSON Schema.
+- v2.0 is not a validation standard.
+- v2.0 is not a required replacement for v1.x profiles.
+- v1.x profiles remain valid and are not deprecated.
+- JSON Schema, probes.json, packet.md, Guild Master Demo v2 support, validation tooling, migration helper, multi-file workflow, shared relations file, and Context Packet tooling are out of scope for v2.0.
+
 ## v1.9.0 - 2026-07-09
 
 ### Added
