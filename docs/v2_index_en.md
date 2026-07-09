@@ -36,12 +36,13 @@ README uses this index as the minimal v2 Draft / Preview entry point. Individual
 5. [Fictional Migration Example](v2_migration_example_fictional_en.md)
 6. [Template Shape Note](v2_template_shape_note_en.md)
 7. [Draft Template Decisions Note](v2_draft_template_decisions_en.md)
-8. [v2 Draft Template](../templates/pim-dbs_v2_draft.json)
-9. [Migration Guidance Note](v2_migration_guidance_note_en.md)
-10. [Migration Checklist](v2_migration_checklist_en.md)
-11. [Preflight Guide](v2_preflight_guide_en.md)
+8. [Architecture Decision Note](v2_architecture_decision_note_en.md)
+9. [v2 Draft Template](../templates/pim-dbs_v2_draft.json)
+10. [Migration Guidance Note](v2_migration_guidance_note_en.md)
+11. [Migration Checklist](v2_migration_checklist_en.md)
+12. [Preflight Guide](v2_preflight_guide_en.md)
 
-This order starts with purpose and scope, then moves through mapping, public example safety, fictional examples, template decisions, the draft itself, migration guidance, and operational checks.
+This order starts with purpose and scope, then moves through mapping, public example safety, fictional examples, template decisions, architecture direction, the draft itself, migration guidance, and operational checks.
 
 ## 4. File Roles
 
@@ -54,6 +55,7 @@ This order starts with purpose and scope, then moves through mapping, public exa
 | [Fictional Migration Example](v2_migration_example_fictional_en.md) | Shows a fully fictional migration example from a v1.x-style profile summary into the v2 draft structure. |
 | [Template Shape Note](v2_template_shape_note_en.md) | Explores possible template shape, top-level sections, and unresolved structural choices. |
 | [Draft Template Decisions Note](v2_draft_template_decisions_en.md) | Records provisional decisions made before creating the first v2 draft template. |
+| [Architecture Decision Note](v2_architecture_decision_note_en.md) | Evaluates the tension between structural separation and single-file kindness, including Option B / Single-File Section Separation as a possible v2.0 baseline. It is not the v2.0 stable specification. |
 | [v2 Draft Template](../templates/pim-dbs_v2_draft.json) | Provides the current non-normative single-JSON draft template. |
 | [Migration Guidance Note](v2_migration_guidance_note_en.md) | Explains optional migration from v1.x to the v2 draft without invalidating v1.x. |
 | [Migration Checklist](v2_migration_checklist_en.md) | Provides a safety checklist for users who want to try optional v1.x to v2 draft migration. |
@@ -70,6 +72,7 @@ They clarify intent before implementation:
 - keeping real Dialogue Exemplars and private data out of public examples
 - treating `charter` as operating principles rather than binding commands
 - treating `calibration` as user-side verification and observation
+- evaluating the balance between structural separation and a beginner-friendly single-file default
 - preserving the v1.x path
 
 ## 6. Examples
