@@ -20,10 +20,14 @@ README uses this index as the minimal v2 Draft / Preview entry point. Individual
 
 ## 2. Current Status
 
-- v2.0 is not a formal specification yet.
+- The v2.0 Stable Specification now exists.
+- It defines the v2.0 stable specification around Single-File Section Separation.
+- It is not a JSON Schema.
+- It is not a validation standard.
+- It is not a required replacement for v1.x profiles.
 - The v2 draft template is a non-normative draft.
-- The v1.x canonical template remains valid.
-- The v2 draft is not a required replacement for v1.x profiles.
+- v1.x profiles remain valid.
+- Until the v2.0 release label is created, v1.x remains the released stable profile path.
 - README uses the v2 index as a minimal v2 Draft / Preview entry point.
 - The v2 materials are design and review artifacts unless otherwise noted.
 

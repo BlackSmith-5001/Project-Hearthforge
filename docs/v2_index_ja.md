@@ -18,10 +18,14 @@ README では、このindexを v2 Draft / Preview の最小入口として使い
 
 ## 2. Current Status
 
-- v2.0はまだ正式仕様ではありません。
+- v2.0 Stable Specification は追加済みです。
+- これは Single-File Section Separation を軸に、v2.0 stable specification を定義する文書です。
+- JSON Schema ではありません。
+- validation standard ではありません。
+- v1.x profiles の必須置き換えではありません。
 - v2 draft template は non-normative draft です。
-- v1.x正本テンプレートは引き続き有効です。
-- v2 draft は v1.x profiles の必須置き換えではありません。
+- v1.x profiles は引き続き有効です。
+- v2.0 release label が作成されるまでは、v1.x がリリース済みの安定した profile 経路です。
 - README では、v2 index を v2 Draft / Preview の最小入口として使います。
 - v2関連ファイルは、明記がない限り設計・レビュー用の資料です。
 
