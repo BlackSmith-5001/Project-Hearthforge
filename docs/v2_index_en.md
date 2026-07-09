@@ -33,14 +33,15 @@ README uses this index as the minimal v2 Draft / Preview entry point. Individual
 2. [Field Mapping Note](v2_field_mapping_note_en.md)
 3. [Public Example Design Note](v2_public_example_design_note_en.md)
 4. [Minimal Fictional Sample](v2_minimal_sample_fictional_en.md)
-5. [Template Shape Note](v2_template_shape_note_en.md)
-6. [Draft Template Decisions Note](v2_draft_template_decisions_en.md)
-7. [v2 Draft Template](../templates/pim-dbs_v2_draft.json)
-8. [Migration Guidance Note](v2_migration_guidance_note_en.md)
-9. [Migration Checklist](v2_migration_checklist_en.md)
-10. [Preflight Guide](v2_preflight_guide_en.md)
+5. [Fictional Migration Example](v2_migration_example_fictional_en.md)
+6. [Template Shape Note](v2_template_shape_note_en.md)
+7. [Draft Template Decisions Note](v2_draft_template_decisions_en.md)
+8. [v2 Draft Template](../templates/pim-dbs_v2_draft.json)
+9. [Migration Guidance Note](v2_migration_guidance_note_en.md)
+10. [Migration Checklist](v2_migration_checklist_en.md)
+11. [Preflight Guide](v2_preflight_guide_en.md)
 
-This order starts with purpose and scope, then moves through mapping, public example safety, sample shape, template decisions, the draft itself, migration guidance, and operational checks.
+This order starts with purpose and scope, then moves through mapping, public example safety, fictional examples, template decisions, the draft itself, migration guidance, and operational checks.
 
 ## 4. File Roles
 
@@ -50,6 +51,7 @@ This order starts with purpose and scope, then moves through mapping, public exa
 | [Field Mapping Note](v2_field_mapping_note_en.md) | Maps v1.x fields and concepts into the candidate `core`, `journal`, `charter`, and `calibration` areas. |
 | [Public Example Design Note](v2_public_example_design_note_en.md) | Defines what can and cannot be shown in public examples. |
 | [Minimal Fictional Sample](v2_minimal_sample_fictional_en.md) | Shows a fully fictional worked example of the candidate v2.0 structure. |
+| [Fictional Migration Example](v2_migration_example_fictional_en.md) | Shows a fully fictional migration example from a v1.x-style profile summary into the v2 draft structure. |
 | [Template Shape Note](v2_template_shape_note_en.md) | Explores possible template shape, top-level sections, and unresolved structural choices. |
 | [Draft Template Decisions Note](v2_draft_template_decisions_en.md) | Records provisional decisions made before creating the first v2 draft template. |
 | [v2 Draft Template](../templates/pim-dbs_v2_draft.json) | Provides the current non-normative single-JSON draft template. |
@@ -70,7 +72,16 @@ They clarify intent before implementation:
 - treating `calibration` as user-side verification and observation
 - preserving the v1.x path
 
-## 6. Operational Guides
+## 6. Examples
+
+Examples are public-safe, fully fictional support documents for understanding the v2 Draft / Preview structure.
+
+They do not make v2.0 a stable specification, final schema, validation standard, or required replacement for v1.x profiles:
+
+- [Minimal Fictional Sample](v2_minimal_sample_fictional_en.md) is a fully fictional v2 worked example.
+- [Fictional Migration Example](v2_migration_example_fictional_en.md) is a fully fictional migration example from a v1.x-style summary into the v2 draft structure.
+
+## 7. Operational Guides
 
 Operational guides are support documents for people using or maintaining the v2 Draft / Preview materials.
 
@@ -79,7 +90,7 @@ They do not make v2.0 a stable specification:
 - [Migration Checklist](v2_migration_checklist_en.md) helps users try optional migration from v1.x to the v2 draft while keeping private-only material out of public files.
 - [Preflight Guide](v2_preflight_guide_en.md) helps maintainers check safety, links, canonical-template preservation, and EN/JA consistency before exposing v2 materials more broadly.
 
-## 7. Draft Template
+## 8. Draft Template
 
 The draft template is:
 
@@ -100,7 +111,7 @@ Current top-level sections:
 
 The v1.x canonical template is not changed by this draft.
 
-## 8. What Is Not Included Yet
+## 9. What Is Not Included Yet
 
 The current v2.0 materials do not include:
 
@@ -115,7 +126,7 @@ The current v2.0 materials do not include:
 
 These may be considered later, but they are not part of the current v2 design set.
 
-## 9. Safety Boundaries
+## 10. Safety Boundaries
 
 Across all v2.0 materials:
 
@@ -127,7 +138,7 @@ Across all v2.0 materials:
 - Keep System Loading Instruction below safety guidelines, platform terms, and higher-priority instructions.
 - Do not treat v1.x as deprecated.
 
-## 10. Suggested Next Steps
+## 11. Suggested Next Steps
 
 Possible next steps:
 
