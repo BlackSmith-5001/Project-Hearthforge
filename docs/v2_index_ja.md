@@ -35,12 +35,13 @@ README では、このindexを v2 Draft / Preview の最小入口として使い
 6. [Template Shape Note](v2_template_shape_note_ja.md)
 7. [Draft Template Decisions Note](v2_draft_template_decisions_ja.md)
 8. [Architecture Decision Note](v2_architecture_decision_note_ja.md)
-9. [v2 Draft Template](../templates/pim-dbs_v2_draft.json)
-10. [Migration Guidance Note](v2_migration_guidance_note_ja.md)
-11. [Migration Checklist](v2_migration_checklist_ja.md)
-12. [Preflight Guide](v2_preflight_guide_ja.md)
+9. [Stabilization Note](v2_stabilization_note_ja.md)
+10. [v2 Draft Template](../templates/pim-dbs_v2_draft.json)
+11. [Migration Guidance Note](v2_migration_guidance_note_ja.md)
+12. [Migration Checklist](v2_migration_checklist_ja.md)
+13. [Preflight Guide](v2_preflight_guide_ja.md)
 
-この順番では、まず目的と範囲を確認し、その後に対応関係、公開サンプルの安全設計、架空サンプル群、テンプレート形状、暫定決定、architecture direction、draft本体、移行ガイド、運用チェックへ進みます。
+この順番では、まず目的と範囲を確認し、その後に対応関係、公開サンプルの安全設計、架空サンプル群、テンプレート形状、暫定決定、architecture direction、stabilization direction、draft本体、移行ガイド、運用チェックへ進みます。
 
 ## 4. File Roles
 
@@ -54,6 +55,7 @@ README では、このindexを v2 Draft / Preview の最小入口として使い
 | [Template Shape Note](v2_template_shape_note_ja.md) | draft template の形状、top-level sections、未決の構造判断を検討する。 |
 | [Draft Template Decisions Note](v2_draft_template_decisions_ja.md) | 初回 v2 draft template 作成前に置いた暫定決定を記録する。 |
 | [Architecture Decision Note](v2_architecture_decision_note_ja.md) | 「分離の力 vs 単一ファイルの優しさ」を扱い、Option B / Single-File Section Separation を v2.0 基本線として評価する判断メモ。v2.0 stable specification そのものではない。 |
+| [Stabilization Note](v2_stabilization_note_ja.md) | Option B / Single-File Section Separation を v2.0 stable の基本線として確定し、既定フローを1枚JSONで始められる形に維持する安定化メモ。v2.0 stable specification 本体、final schema、validation standard ではない。 |
 | [v2 Draft Template](../templates/pim-dbs_v2_draft.json) | 現在の non-normative single-JSON draft template。 |
 | [Migration Guidance Note](v2_migration_guidance_note_ja.md) | v1.xを無効化せず、v2 draftへ任意移行するための手引き。 |
 | [Migration Checklist](v2_migration_checklist_ja.md) | v1.x から v2 draft への任意移行を試すユーザー向けの安全チェックリスト。 |
@@ -71,6 +73,7 @@ Design Notes は探索的な文書です。
 - `charter` を契約や命令ではなく運用原則として扱う
 - `calibration` をユーザー側の検分・観測として扱う
 - 構造分離と初心者に優しい単一ファイル既定形のバランスを評価する
+- Option B / Single-File Section Separation を v2.0 基本線として安定化する
 - v1.x の利用経路を残す
 
 ## 6. Examples
