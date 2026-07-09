@@ -2,6 +2,24 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
+## v1.9.0 - 2026-07-09
+
+### Added
+- Added v2 Draft Template Refinement Note to define safe, incremental refinement boundaries before editing the v2 draft template.
+- Added v2 Fictional Migration Example showing how a fictional v1.x-style profile summary can be mapped into the v2 draft structure.
+- Updated the v2 Draft / Preview Index with Examples links for the minimal fictional sample and fictional migration example.
+
+### Changed
+- Refined the v2 draft template meta and journal notes to clarify v1.x stable path compatibility and public/private journal boundaries.
+
+### Notes
+- v2 materials remain Draft / Preview materials.
+- v2 materials are not a stable v2.0 specification.
+- They are not a final schema.
+- They are not a validation standard.
+- They are not a required replacement for v1.x profiles.
+- v1.x remains the current stable profile path.
+
 ## v1.8.0 - 2026-07-09
 
 ### Added
