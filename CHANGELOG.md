@@ -2,6 +2,21 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
+## v2.0.1 - 2026-07-09
+
+### Changed
+- Updated README / README_JA v2 section wording to reflect that the v2.0 Stable Specification now exists.
+- Updated v2_index Current Status wording for the post-v2.0.0 release state.
+- Added clearer public navigation to the v2.0 Stable Specification while preserving the v2_index entry point.
+
+### Notes
+- This is a documentation clarity patch.
+- No specification structure was changed.
+- v2.0 remains not a JSON Schema.
+- v2.0 remains not a validation standard.
+- v2.0 remains not a required replacement for v1.x profiles.
+- v1.x profiles remain valid and are not deprecated.
+
 ## v2.0.0 - 2026-07-09
 
 ### Added

@@ -57,13 +57,14 @@
 
 ---
 
-## v2 Draft / Preview
-PIM-DBS v2関連資料は、現時点では non-normative な draft / preview 資料です。
-final schema ではなく、validation standard でもなく、v1.x profile の必須置き換えでもありません。
-安定運用では、上の「まずはこちら」の導線をご利用ください。v1.x が現行の安定した profile 経路です。
+## v2.0 Stable Specification / v2資料
+v2.0 Stable Specification は追加済みです。Single-File Section Separation を v2.0 stable baseline として定義します。
+JSON Schema ではなく、validation standard でもなく、v1.x profiles の必須置き換えでもありません。
+最もシンプルな安定運用では、上の「まずはこちら」の導線をご利用ください。v1.x profiles は引き続き有効で、サポート対象です。
 
 まずはこちら：
-- [v2 Draft / Preview Index](docs/v2_index_ja.md)
+- [v2 Index](docs/v2_index_ja.md)
+- [v2.0 Stable Specification](docs/v2_stable_specification_ja.md)
 
 ---
 

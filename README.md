@@ -58,13 +58,14 @@ For a first PIM-DBS profile, follow this path:
 
 ---
 
-## v2 Draft / Preview
-PIM-DBS v2 materials are currently provided as non-normative draft / preview materials.
-They are not a final schema, not a validation standard, and not a required replacement for v1.x profiles.
-For stable use, follow the Start Here flow above; v1.x remains the current stable profile path.
+## v2.0 Stable Specification / v2 Materials
+The v2.0 Stable Specification now exists. It defines Single-File Section Separation as the v2.0 stable baseline.
+It is not a JSON Schema, not a validation standard, and not a required replacement for v1.x profiles.
+For the simplest stable workflow, follow the Start Here flow above. v1.x profiles remain valid and supported.
 
 Start here:
-- [v2 Draft / Preview Index](docs/v2_index_en.md)
+- [v2 Index](docs/v2_index_en.md)
+- [v2.0 Stable Specification](docs/v2_stable_specification_en.md)
 
 ---
 

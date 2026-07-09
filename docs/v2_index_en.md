@@ -16,7 +16,7 @@ This index explains:
 - what is intentionally not included yet
 - which safety boundaries remain fixed across the design work
 
-README uses this index as the minimal v2 Draft / Preview entry point. Individual v2 notes are not listed directly in README.
+README uses this index as the minimal v2 materials entry point. Individual v2 notes are not listed directly in README.
 
 ## 2. Current Status
 
@@ -26,9 +26,10 @@ README uses this index as the minimal v2 Draft / Preview entry point. Individual
 - It is not a validation standard.
 - It is not a required replacement for v1.x profiles.
 - The v2 draft template is a non-normative draft.
-- v1.x profiles remain valid.
-- Until the v2.0 release label is created, v1.x remains the released stable profile path.
-- README uses the v2 index as a minimal v2 Draft / Preview entry point.
+- v2.0.0 has been released.
+- v1.x profiles remain valid and are not deprecated.
+- For the simplest practical workflow, users may still start with the v1.x Start Here flow.
+- README uses the v2 index as a minimal v2 materials entry point.
 - The v2 materials are design and review artifacts unless otherwise noted.
 
 ## 3. Recommended Reading Order
