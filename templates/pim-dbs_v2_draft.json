@@ -4,7 +4,7 @@
     "draft_name": "PIM-DBS v2.0 Draft Template",
     "draft_status": "non-normative draft",
     "draft_notice": "This file is a non-normative v2.0 draft template for review. It is not a final schema, validation standard, or required replacement for v1.x profiles.",
-    "v1_compatibility": "PIM-DBS v1.x single-JSON profiles remain valid. This v2.0 draft is a non-mandatory structural proposal.",
+    "v1_compatibility": "PIM-DBS v1.x single-JSON profiles remain valid and remain the current stable profile path. This v2.0 draft is a non-mandatory structural proposal.",
     "example_mode": "public-safe fictional placeholders only",
     "privacy_level": "public template draft",
     "author": "Project Hearthforge",
@@ -48,8 +48,9 @@
     }
   },
   "journal": {
-    "privacy_note": "Journal is privacy-sensitive. In a public draft, keep this section empty, placeholder-only, or fully fictional.",
-    "public_template_mode": "empty_or_fictional_only",
+    "privacy_note": "Journal is privacy-sensitive. In a public draft, keep this section empty, placeholder-only, or fully fictional; keep real journal content in private instances only.",
+    "public_template_mode": "empty_placeholder_or_fictional_only",
+    "public_draft_note": "Do not include real Dialogue Exemplars, real conversation logs, voiceprint-derived data, private memories, family data, or relationship history in a public draft.",
     "shared_episodes": [
       {
         "summary": "<Fully fictional sample episode or placeholder>",
