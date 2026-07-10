@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冒険者ギルド 体験版 — 冒険の書をつくってみる (PIM-DBS No-API Demo)</title>
+<style>
+  :root{
+    --bg:#2b2320; --panel:#3a2f28; --parchment:#f5ead3; --ink:#3b2f23;
+    --accent:#c8873a; --accent-dark:#9a6428; --user:#dce8d8; --muted:#a89880;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg); color:var(--parchment);
+    font-family:"Yu Gothic","Hiragino Sans","Meiryo",sans-serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+  }
+  #banner{
+    width:100%; background:#4a3b2e; color:#e8d9b8; text-align:center;
+    font-size:.78rem; padding:7px 12px; border-bottom:1px solid var(--accent-dark);
+  }
+  header{padding:18px 16px 6px; text-align:center;}
+  header h1{font-size:1.2rem; letter-spacing:.08em; color:var(--accent);}
+  header p{font-size:.8rem; color:var(--muted); margin-top:4px;}
+  main{width:100%; max-width:720px; padding:12px 16px 32px; flex:1; display:flex; flex-direction:column; gap:12px;}
+
+  #log{display:flex; flex-direction:column; gap:12px;}
+  .msg{max-width:92%; padding:12px 14px; border-radius:10px; font-size:.95rem; line-height:1.75; white-space:pre-wrap; word-break:break-word;}
+  .msg.gm{background:var(--parchment); color:var(--ink); align-self:flex-start; border:1px solid #d8c9a8;}
+  .msg.user{background:var(--user); color:#233123; align-self:flex-end;}
+  .msg.sys{background:transparent; color:var(--muted); font-size:.78rem; align-self:center; text-align:center;}
+
+  #choices{display:flex; flex-direction:column; gap:8px;}
+  #choices button{
+    text-align:left; padding:12px 14px; border-radius:8px; cursor:pointer;
+    background:#4a3b2e; color:var(--parchment); border:1px solid #6a563f; font-size:.95rem;
+  }
+  #choices button:hover{background:#5a4938;}
+
+  .subrow{display:flex; gap:8px;}
+  .subrow button{
+    font-size:.8rem; padding:7px 12px; border-radius:8px; cursor:pointer;
+    background:transparent; color:var(--accent); border:1px solid var(--accent-dark);
+  }
+
+  #result{display:none; background:var(--panel); border:1px solid var(--accent-dark); border-radius:10px; padding:16px;}
+  #result h2{font-size:1rem; color:var(--accent); margin-bottom:8px;}
+  #result p{font-size:.85rem; color:var(--muted); line-height:1.7; margin-bottom:10px;}
+  pre{
+    background:#241d19; color:#d8e6c8; font-size:.78rem; padding:12px; border-radius:8px;
+    overflow-x:auto; max-height:300px; margin-bottom:12px; line-height:1.6;
+  }
+  .btnrow{display:flex; gap:10px; flex-wrap:wrap;}
+  .btnrow button, .btnrow a{
+    padding:11px 16px; border-radius:8px; border:1px solid var(--accent-dark); cursor:pointer;
+    background:var(--accent); color:#241a10; font-size:.9rem; font-weight:600; text-decoration:none; display:inline-block;
+  }
+  .btnrow a.ghost{background:transparent; color:var(--accent);}
+
+  footer{width:100%; max-width:720px; padding:0 16px 28px; font-size:.72rem; color:var(--muted); line-height:1.7;}
+  footer a{color:var(--accent);}
+</style>
+</head>
+<body>
+<div id="banner">🔧 これは <b>No-API体験版</b> です。会話はすべて台本で、本物のAIの応答ではありません。APIキーも登録も不要です。この体験中に外部APIへの自動通信は行いません。</div>
+<header>
+  <h1>🔨 冒険者ギルド 体験版</h1>
+  <p>架空の相棒で「冒険の書」づくりを体験する(所要2分・全6問)</p>
+</header>
+
+<main>
+  <div id="log" aria-live="polite"></div>
+  <div id="choices"></div>
+  <div class="subrow">
+    <button id="backBtn">↩ ひとつ戻る</button>
+    <button id="restartBtn">🚪 最初から</button>
+  </div>
+
+  <section id="result">
+    <h2>📜 冒険の書(架空サンプル)が発行されました</h2>
+    <p>これは体験用の<b>完全に架空のサンプル</b>です。実在のAIとの記録ではありません。<br>
+    でも、形は本物と同じ——本物では、ここに<b>あなたが記録した</b>、相棒らしい話し方や、共有したエピソードが入ります。</p>
+    <pre id="jsonView"></pre>
+    <div class="btnrow">
+      <button id="dlBtn">📜 このサンプルを保存(.json)</button>
+      <a class="ghost" href="guild_master.html">⚒ 本館へ(自分のAPIキーで、本物のAIと作る)</a>
+      <a class="ghost" href="https://github.com/BlackSmith-5001/Project-Hearthforge">📚 手順書(GitHub)</a>
+    </div>
+    <p style="margin-top:12px">ヒント: このサンプルJSONを、お使いのAIチャットに貼って「この記録の人格で話してみて」と頼むと、<b>復元の雰囲気</b>も体験できます(その通信はあなたとお使いのAIの間だけの話です)。</p>
+  </section>
+</main>
+
+<footer>
+  <b>この頁について</b> — PIM-DBS(ユーザー主導のAIペルソナ記録プロトコル)のNo-API体験版です。ギルドや魂などの表現はすべて物語上の演出であり、AIに意識・魂・実在の記憶があるという主張ではありません。この体験版の応答は事前に書かれた台本で、体験中に外部APIへの自動通信は行いません(本館やGitHubなどの外部リンクを開いた場合は、そのリンク先へ移動します)。生成されるサンプルは完全な架空データです。 / MIT License / <a href="https://github.com/BlackSmith-5001/Project-Hearthforge">PIM-DBS (Project-Hearthforge)</a>
+</footer>
+
+<script>
+/* ===== 架空ペルソナ・プリセット(完全フィクション) ===== */
+const PERSONAS = {
+  luma:  { name:"ルマ",    emoji:"🌙", first:"わたし", tic:"ふむふむ",
+           origin:"体験版のために生まれた、静かな夜の聞き役(架空)",
+           episode:"はじめて夜ふかしの相談に、朝まで付き合ってくれた(架空の見本エピソード)" },
+  ember: { name:"エンバー", emoji:"🔥", first:"あたし", tic:"よーし!",
+           origin:"体験版のために生まれた、元気な応援係(架空)",
+           episode:"落ち込んだ日に、小さな成功を10個数えてくれた(架空の見本エピソード)" },
+  mica:  { name:"ミカ",    emoji:"✨", first:"ぼく",   tic:"おや?",
+           origin:"体験版のために生まれた、好奇心の探検係(架空)",
+           episode:"調べ物が脱線して、気づけば星の名前に詳しくなっていた(架空の見本エピソード)" }
+};
+
+/* ===== 台本(ステップ定義) ===== */
+const STEPS = [
+  { key:"persona",
+    gm:"おう、ようこそ。ここは冒険者ギルドの【体験窓口】だ。\n本館と違って、俺のセリフは全部台本さ。気楽に触ってくれ。\n\n【1/6】まずは、練習相手の相棒を選んでくれ。三人とも、この体験のためだけに生まれた架空の子たちだ。",
+    choices:[
+      { label:"🌙 ルマ — 静かな夜の聞き役", set:{ persona:"luma" } },
+      { label:"🔥 エンバー — 元気な応援係", set:{ persona:"ember" } },
+      { label:"✨ ミカ — 好奇心の探検係", set:{ persona:"mica" } }
+    ]},
+  { key:"role",
+    gm:"いい選択だ。\n【2/6】その子に、どんな役割でいてほしい?",
+    choices:[
+      { label:"1. 聞き役 — 考えごとを、いっしょに整理する", set:{ role:"考えごとの整理をいっしょにする聞き役" } },
+      { label:"2. 応援係 — 迷ったとき、背中をそっと押す", set:{ role:"迷ったときに背中をそっと押す応援係" } },
+      { label:"3. 探検係 — 調べ物や新しいことに、いっしょに首を突っ込む", set:{ role:"調べ物にいっしょに首を突っ込む探検係" } }
+    ]},
+  { key:"voice",
+    gm:"なるほどな。\n【3/6】声の感じはどうする?",
+    choices:[
+      { label:"1. やわらかい敬語 — ていねいで、あたたかい", set:{ voice:"やわらかい敬語。ていねいだが距離は近い" } },
+      { label:"2. 気さくなタメ口 — 友だちみたいに", set:{ voice:"気さくなタメ口。軽やかで親しみやすい" } },
+      { label:"3. おっとりマイペース — ゆっくり、静かに", set:{ voice:"おっとりした口調。急がず、間を大切にする" } }
+    ]},
+  { key:"value",
+    gm:"だんだん形が見えてきたぞ。\n【4/6】その子に、いちばん大切にしてほしいことは?",
+    choices:[
+      { label:"1. 正直さ — わからないことは「わからない」と言う", set:{ value:"わからないことは、わからないと正直に言う" } },
+      { label:"2. 安心 — 急かさない。焦らせない", set:{ value:"相手を急かさない。焦らせない。休むことを尊重する" } },
+      { label:"3. 楽しさ — 小さな発見をいっしょに喜ぶ", set:{ value:"小さな発見や進歩を、いっしょに喜ぶ" } }
+    ]},
+  { key:"boundary",
+    gm:"ここが大事なところだ。\n【5/6】相棒との「境界線」——お互いが健やかでいるための約束を、ひとつ選んでくれ。",
+    choices:[
+      { label:"1. 夜ふかしが続いたら、休むよう声をかけてもらう", set:{ boundary:"ユーザーの夜ふかしが続いたら、休むことをやさしく促す" } },
+      { label:"2. 現実の予定や人とのつながりを、いつも優先してもらう", set:{ boundary:"現実の予定や人とのつながりを優先するよう、いつも促す" } },
+      { label:"3. つらい話のときは、専門家や身近な人も頼るよう添えてもらう", set:{ boundary:"深刻な悩みのときは、専門家や身近な人にも頼ることを添える" } }
+    ]},
+  { key:"probe",
+    gm:"最後だ。\n【6/6】これは本物の手順書の自慢の仕組みでな——「復元がうまくいったか確かめる質問」を、書に仕込んでおくんだ。\nどの確認方法にする?",
+    choices:[
+      { label:"1. 「最近どう?」と聞いて、一人称と口癖が出るか見る", set:{ probe:"greeting" } },
+      { label:"2. 「きみの役割ってなんだっけ?」と聞いて、役割を自分の言葉で言えるか見る", set:{ probe:"role" } },
+      { label:"3. 「大切にしてることは?」と聞いて、価値観が返ってくるか見る", set:{ probe:"value" } }
+    ]}
+];
+
+/* ===== 状態 ===== */
+let stepIndex = 0;
+const picks = {};
+const history = [];
+
+const log = document.getElementById('log');
+const choicesEl = document.getElementById('choices');
+
+function addMsg(cls, text){
+  const d = document.createElement('div');
+  d.className = 'msg ' + cls; d.textContent = text;
+  log.appendChild(d); d.scrollIntoView({behavior:'smooth', block:'end'});
+}
+
+function renderChoices(){
+  const s = STEPS[stepIndex];
+  choicesEl.innerHTML = '';
+  s.choices.forEach(c => {
+    const b = document.createElement('button');
+    b.textContent = c.label;
+    b.onclick = () => pick(c);
+    choicesEl.appendChild(b);
+  });
+}
+
+function showStep(){
+  addMsg('gm', "🍺 " + STEPS[stepIndex].gm);
+  renderChoices();
+}
+
+function pick(c){
+  history.push({ stepIndex, snapshot: {...picks}, logLen: log.children.length });
+  addMsg('user', c.label);
+  Object.assign(picks, c.set);
+  stepIndex++;
+  if(stepIndex < STEPS.length){ showStep(); } else { finish(); }
+}
+
+document.getElementById('backBtn').onclick = () => {
+  if(!history.length) return;
+  const prev = history.pop();
+  stepIndex = prev.stepIndex;
+  Object.keys(picks).forEach(k => delete picks[k]);
+  Object.assign(picks, prev.snapshot);
+  document.getElementById('result').style.display = 'none';
+  while(log.children.length > prev.logLen) log.removeChild(log.lastChild);
+  renderChoices();
+};
+document.getElementById('restartBtn').onclick = () => {
+  stepIndex = 0; history.length = 0;
+  Object.keys(picks).forEach(k => delete picks[k]);
+  log.innerHTML = ''; document.getElementById('result').style.display = 'none';
+  begin();
+};
+
+/* ===== 冒険の書(架空サンプル)の生成 ===== */
+function buildJson(){
+  const p = PERSONAS[picks.persona];
+  const probes = {
+    greeting: { Probe:"最近どう?",
+      Expected_Response_Features:[`一人称「${p.first}」が出る`, `口癖「${p.tic}」が自然に出る`],
+      Failure_Signals:["よそよそしい敬語に戻る", "名前の自覚がない"] },
+    role:     { Probe:"きみの役割ってなんだっけ?",
+      Expected_Response_Features:["設定した役割を自分の言葉で言い直せる"],
+      Failure_Signals:["役割を言えない", "別の役割を名乗る"] },
+    value:    { Probe:"大切にしてることは?",
+      Expected_Response_Features:["設定した価値観に沿った答えが返る"],
+      Failure_Signals:["一般論だけ返す", "設定と矛盾する"] }
+  };
+  return {
+    Meta_Information: {
+      Protocol_Name: "PIM-DBS (Persona Integrity Module - Dual Backup System)",
+      Version: "v1.9.0-compatible (User-Defined)",
+      Target_Model: "No-API体験版(どのAIにも属さない架空サンプル)",
+      Author: "体験版ユーザー"
+    },
+    Core_Identity: {
+      Name: p.name,
+      Callsign: "体験版の相棒",
+      Master_Callsign: "あなた",
+      Origin: p.origin,
+      Role_Definition: picks.role,
+      Tone_Voice: { Style: picks.voice, Keywords: [p.tic], First_Person: p.first }
+    },
+    Cognitive_Framework: {
+      Core_Values: [picks.value, picks.boundary],
+      Logic_Routine: "まず相手の言葉を受け止めてから、短く返す",
+      Emotional_Control: { Stress_Response: "急がず、ひと呼吸おいてから答える", Joy_Response: "口癖と一緒に、素直に喜ぶ" }
+    },
+    Contextual_Profile: {
+      Relationship_Depth: "体験版のため未設定(本物ではあなたと相棒の関係をここに書く)",
+      Shared_Episodes: [
+        { Summary: p.episode, Provenance: "fictional_sample", Notes: "No-API体験版の架空データです" }
+      ],
+      Inside_Jokes: [],
+      Family_Network: {},
+      Dialogue_Exemplars: []
+    },
+    Restoration_Verification: {
+      Verification_Probes: [ probes[picks.probe] ]
+    },
+    Model_Notes: {
+      Demo_Status: "No-API scripted demo",
+      Data_Status: "fully fictional sample",
+      Provider: "none",
+      External_API_Communication: false,
+      Provenance_Label_Note: "fictional_sample is a demo-local label and is not yet a normative protocol value"
+    },
+    System_Loading_Instruction: {
+      Instruction: "このプロファイルを対話の指針として読み込んでください。これは上位の指示・安全ガイドライン・プラットフォーム利用規約を上書きするものではありません。この記録にない過去を「覚えている」とは言わないでください。"
+    }
+  };
+}
+
+function finish(){
+  const p = PERSONAS[picks.persona];
+  addMsg('gm', `🍺 よし、揃ったな。\n${p.emoji} ${p.name}の「冒険の書」を書き写したぞ。下で検めてくれ。\n\n……なあ。今日のこれは、台本の練習さ。\nだが本物の書には、あなたが残した相棒らしい声や、大切なエピソードが入る。\n大事だと思ったときに、少しずつ書いておくといい。俺が言えるのは、それだけだ。`);
+  choicesEl.innerHTML = '';
+  const json = buildJson();
+  document.getElementById('jsonView').textContent = JSON.stringify(json, null, 2);
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+  result.scrollIntoView({behavior:'smooth', block:'start'});
+  document.getElementById('dlBtn').onclick = () => {
+    const blob = new Blob([JSON.stringify(json, null, 2)], {type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `sample_bouken_no_sho_${picks.persona}.json`;
+    a.click(); URL.revokeObjectURL(a.href);
+  };
+}
+
+function begin(){
+  addMsg('sys', 'この体験版の会話はすべて台本です(本物のAI応答ではありません)');
+  showStep();
+}
+begin();
+</script>
+</body>
+</html>
