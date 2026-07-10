@@ -31,7 +31,9 @@ Start here:
 - No account setup required
 - Scripted demo, not a real AI conversation
 - Uses only fully fictional sample data
+- No external AI provider receives your choices
 - No automatic external AI API communication during the demo
+- About 3 minutes
 - Generates a sample "adventure log" JSON so you can feel the flow
 
 [Open the No-API Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html)
@@ -56,7 +58,7 @@ For users who understand API keys and provider-side data handling, the advanced 
 - 💬 **Discussion Prompts:** [docs/discussion_prompts_en.md](docs/discussion_prompts_en.md)
 
 **Demos**
-- 🧪 **No-API Guild Master Demo:** [Live Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html) / [source](tools/guild_master_no_api_demo.html) — a scripted, fully fictional first-touch demo with no API key, account setup, or automatic external AI API communication.
+- 🧪 **No-API Guild Master Demo:** [Live Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html) / [source](tools/guild_master_no_api_demo.html) — a scripted, fully fictional first-touch demo with no API key, account setup, or external AI provider receiving your choices.
 - 🏰 **Advanced BYOK Guild Master Demo:** [Live Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master.html) / [source](tools/guild_master.html) — an API-aware browser demo for users who understand API keys and provider-side data handling.
 - 📝 **Guild Master Prompt:** [templates/guild_master_prompt.md](templates/guild_master_prompt.md) — a prompt-only version you can paste into a chat.
 

@@ -30,7 +30,9 @@ PIM-DBSがどんなものか、APIキーなしで試せます。
 - 登録不要
 - 本物のAI応答ではなく、台本による体験版
 - 完全架空サンプルのみ使用
+- 選択内容を外部AIへ送信しません
 - 体験中に外部AI APIへの自動通信なし
+- 約3分
 - サンプルの「冒険の書」JSONを生成して、流れを体験できます
 
 [APIキー不要デモを開く](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html)
@@ -55,7 +57,7 @@ APIキーや外部AIプロバイダへの送信を理解している方は、下
 - 💬 **Discussion Prompts:** [docs/discussion_prompts_ja.md](docs/discussion_prompts_ja.md)
 
 **デモ**
-- 🧪 **APIキー不要 Guild Master Demo:** [Live Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html) / [ソース](tools/guild_master_no_api_demo.html) — APIキー不要・登録不要・外部AI APIへの自動通信なしで触れる、台本式の完全架空体験版。
+- 🧪 **APIキー不要 Guild Master Demo:** [Live Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html) / [ソース](tools/guild_master_no_api_demo.html) — APIキー不要・登録不要・選択内容を外部AIへ送信しない、台本式の完全架空体験版。
 - 🏰 **上級者向け BYOK Guild Master Demo:** [Live Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master.html) / [ソース](tools/guild_master.html) — APIキーと外部AIプロバイダへの送信を理解している方向けのAPI-awareブラウザデモ。
 - 📝 **Guild Masterプロンプト:** [templates/guild_master_prompt.md](templates/guild_master_prompt.md) — AIチャットに貼って使うプロンプト版。
 

@@ -3,294 +3,538 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>冒険者ギルド 体験版 — 冒険の書をつくってみる (PIM-DBS No-API Demo)</title>
+<title>冒険の書 発行所 — PIM-DBS 体験版(No-API)</title>
 <style>
   :root{
-    --bg:#2b2320; --panel:#3a2f28; --parchment:#f5ead3; --ink:#3b2f23;
-    --accent:#c8873a; --accent-dark:#9a6428; --user:#dce8d8; --muted:#a89880;
+    --bg:#211A15; --edge:#14100C; --flame:#F0A030; --ember:#DA5A22;
+    --cream:#F4EFE6; --sub:#B9A48F;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
   body{
-    background:var(--bg); color:var(--parchment);
+    background:var(--edge); color:var(--cream);
     font-family:"Yu Gothic","Hiragino Sans","Meiryo",sans-serif;
-    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    display:flex; justify-content:center;
   }
-  #banner{
-    width:100%; background:#4a3b2e; color:#e8d9b8; text-align:center;
-    font-size:.78rem; padding:7px 12px; border-bottom:1px solid var(--accent-dark);
+  #app{
+    width:100%; max-width:520px; min-height:100dvh;
+    background:var(--bg); display:flex; flex-direction:column;
+    box-shadow:0 0 40px rgba(0,0,0,.6);
+    position:relative;
   }
-  header{padding:18px 16px 6px; text-align:center;}
-  header h1{font-size:1.2rem; letter-spacing:.08em; color:var(--accent);}
-  header p{font-size:.8rem; color:var(--muted); margin-top:4px;}
-  main{width:100%; max-width:720px; padding:12px 16px 32px; flex:1; display:flex; flex-direction:column; gap:12px;}
 
-  #log{display:flex; flex-direction:column; gap:12px;}
-  .msg{max-width:92%; padding:12px 14px; border-radius:10px; font-size:.95rem; line-height:1.75; white-space:pre-wrap; word-break:break-word;}
-  .msg.gm{background:var(--parchment); color:var(--ink); align-self:flex-start; border:1px solid #d8c9a8;}
-  .msg.user{background:var(--user); color:#233123; align-self:flex-end;}
-  .msg.sys{background:transparent; color:var(--muted); font-size:.78rem; align-self:center; text-align:center;}
+  /* ヘッダー */
+  #hud{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 14px; font-size:.85rem; color:var(--sub);
+    border-bottom:1px solid #322820;
+  }
+  #hud b{color:var(--flame); letter-spacing:.06em; font-size:.95rem;}
+  #hudright{display:flex; gap:8px; align-items:center;}
+  .iconbtn{
+    background:none; border:1px solid #4a3b2c; color:var(--sub);
+    border-radius:8px; padding:6px 10px; font-size:.9rem; cursor:pointer;
+  }
 
-  #choices{display:flex; flex-direction:column; gap:8px;}
+  /* 舞台 */
+  #stage{position:relative; width:100%; aspect-ratio:5/4; overflow:hidden; flex-shrink:0;}
+  #bg{position:absolute; inset:0; width:100%; height:100%;}
+  #chara{
+    position:absolute; left:50%; bottom:-2%; transform:translateX(-50%);
+    height:82%; transition:opacity .4s;
+  }
+  .bob{animation:bob 3.4s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(4px)}}
+  .hop{animation:hop .5s ease;}
+  @keyframes hop{0%,100%{transform:translateX(-50%) translateY(0)}40%{transform:translateX(-50%) translateY(-14px)}}
+  #glow{transition:opacity 1s;}
+
+  /* 鍛造カード演出 */
+  #forgecards{position:absolute; inset:0; display:none; pointer-events:none;}
+  .fcard{
+    position:absolute; left:50%; top:40%;
+    background:var(--cream); color:#3b2f23; font-size:.72rem;
+    padding:5px 9px; border-radius:6px; opacity:0;
+    animation:gather 1.4s ease forwards;
+  }
+  @keyframes gather{
+    0%{opacity:0; transform:translate(var(--fx), var(--fy)) scale(.9);}
+    35%{opacity:1;}
+    100%{opacity:0; transform:translate(-50%,-50%) scale(.5);}
+  }
+
+  /* セリフ */
+  #nameplate{
+    margin:-14px 14px 0; position:relative; z-index:2; width:fit-content;
+    background:var(--ember); color:#fff; font-size:.85rem; font-weight:600;
+    padding:4px 14px; border-radius:8px 8px 0 0;
+  }
+  #nameplate, #dialog{ flex-shrink:0; }
+  #dialog{
+    margin:0 14px; background:rgba(20,16,12,.92);
+    border:1px solid #4a3b2c; border-radius:0 10px 10px 10px;
+    padding:14px 16px; height:auto; min-height:96px; font-size:1rem; line-height:1.85;
+    white-space:pre-wrap; overflow:visible; overflow-wrap:anywhere; cursor:pointer;
+  }
+  @media (max-width:420px){
+    #dialog{ padding:12px 14px; font-size:.95rem; line-height:1.7; }
+  }
+  #dialog .cursor{color:var(--flame);}
+
+  /* 選択肢 */
+  #choices{display:flex; flex-direction:column; gap:10px; padding:14px; flex:1;}
   #choices button{
-    text-align:left; padding:12px 14px; border-radius:8px; cursor:pointer;
-    background:#4a3b2e; color:var(--parchment); border:1px solid #6a563f; font-size:.95rem;
+    text-align:left; min-height:52px; padding:12px 16px;
+    background:#32271d; color:var(--cream); font-size:.98rem; line-height:1.5;
+    border:1px solid #5a4632; border-radius:12px; cursor:pointer;
   }
-  #choices button:hover{background:#5a4938;}
+  #choices button:active{background:#46362a;}
+  @media(hover:hover){ #choices button:hover{background:#46362a; border-color:var(--flame);} }
 
-  .subrow{display:flex; gap:8px;}
-  .subrow button{
-    font-size:.8rem; padding:7px 12px; border-radius:8px; cursor:pointer;
-    background:transparent; color:var(--accent); border:1px solid var(--accent-dark);
+  /* タイトル画面(アプリ全面を覆う) */
+  #title{
+    position:absolute; inset:0; z-index:10; background:var(--bg);
+    display:flex; overflow-y:auto;
   }
+  #title .inner{
+    margin:auto; display:flex; flex-direction:column; align-items:center;
+    text-align:center; padding:28px 24px; gap:14px;
+  }
+  #title h1{color:var(--flame); font-size:1.6rem; letter-spacing:.12em;}
+  #title .sub{color:var(--sub); font-size:.9rem; line-height:1.8;}
+  #title .badges{display:flex; flex-wrap:wrap; gap:8px; justify-content:center;}
+  #title .badges span{
+    font-size:.72rem; color:var(--sub); border:1px solid #4a3b2c;
+    padding:4px 10px; border-radius:99px;
+  }
+  #title .start{display:flex; flex-direction:column; gap:10px; width:100%; max-width:300px; margin-top:8px;}
+  #title .start button{
+    min-height:54px; font-size:1rem; border-radius:12px; cursor:pointer;
+    background:var(--ember); color:#fff; border:none; font-weight:600;
+  }
+  #title .start button.quiet{background:#32271d; color:var(--cream); border:1px solid #5a4632;}
+  #title .safety{font-size:.72rem; color:var(--sub); line-height:1.7; max-width:340px;}
 
-  #result{display:none; background:var(--panel); border:1px solid var(--accent-dark); border-radius:10px; padding:16px;}
-  #result h2{font-size:1rem; color:var(--accent); margin-bottom:8px;}
-  #result p{font-size:.85rem; color:var(--muted); line-height:1.7; margin-bottom:10px;}
+  /* 完成カード */
+  #result{display:none; padding:0 14px 20px; flex-direction:column; gap:12px;}
+  #card{
+    background:linear-gradient(160deg,#f7f0df,#efe3c8);
+    color:#3b2f23; border-radius:12px; padding:18px 16px;
+    border:2px solid #c9a86a; box-shadow:0 4px 14px rgba(0,0,0,.4);
+  }
+  #card h2{font-size:1.05rem; color:#8a5a1e; margin-bottom:10px; letter-spacing:.08em; text-align:center;}
+  #card dl{font-size:.9rem; line-height:1.9;}
+  #card dt{font-weight:700; color:#9a6428;}
+  #card dd{margin:0 0 8px 0;}
+  #card .blank{color:#a08a6a; font-size:.82rem;}
+  details{background:#241d17; border:1px solid #4a3b2c; border-radius:10px; padding:10px 12px;}
+  summary{cursor:pointer; font-size:.88rem; color:var(--sub);}
   pre{
-    background:#241d19; color:#d8e6c8; font-size:.78rem; padding:12px; border-radius:8px;
-    overflow-x:auto; max-height:300px; margin-bottom:12px; line-height:1.6;
+    margin-top:10px; background:#14100C; color:#d8e6c8; font-size:.72rem;
+    padding:10px; border-radius:8px; overflow-x:auto; line-height:1.6;
+    max-height:240px; overflow-y:auto;
   }
-  .btnrow{display:flex; gap:10px; flex-wrap:wrap;}
+  .btnrow{display:flex; flex-wrap:wrap; gap:10px;}
   .btnrow button, .btnrow a{
-    padding:11px 16px; border-radius:8px; border:1px solid var(--accent-dark); cursor:pointer;
-    background:var(--accent); color:#241a10; font-size:.9rem; font-weight:600; text-decoration:none; display:inline-block;
+    flex:1 1 40%; min-height:48px; display:flex; align-items:center; justify-content:center;
+    background:var(--ember); color:#fff; border:none; border-radius:10px;
+    font-size:.9rem; font-weight:600; cursor:pointer; text-decoration:none; padding:8px;
   }
-  .btnrow a.ghost{background:transparent; color:var(--accent);}
+  .btnrow .ghost{background:#32271d; color:var(--cream); border:1px solid #5a4632;}
+  #byoknote{font-size:.72rem; color:var(--sub); line-height:1.7;}
+  footer{padding:0 14px 22px; font-size:.7rem; color:var(--sub); line-height:1.7;}
+  footer a{color:var(--flame);}
 
-  footer{width:100%; max-width:720px; padding:0 16px 28px; font-size:.72rem; color:var(--muted); line-height:1.7;}
-  footer a{color:var(--accent);}
+  @media (prefers-reduced-motion: reduce){
+    .bob,.hop{animation:none;}
+    .fcard{animation-duration:.01s;}
+  }
 </style>
 </head>
 <body>
-<div id="banner">🔧 これは <b>No-API体験版</b> です。会話はすべて台本で、本物のAIの応答ではありません。APIキーも登録も不要です。この体験中に外部APIへの自動通信は行いません。</div>
-<header>
-  <h1>🔨 冒険者ギルド 体験版</h1>
-  <p>架空の相棒で「冒険の書」づくりを体験する(所要2分・全6問)</p>
-</header>
-
-<main>
-  <div id="log" aria-live="polite"></div>
-  <div id="choices"></div>
-  <div class="subrow">
-    <button id="backBtn">↩ ひとつ戻る</button>
-    <button id="restartBtn">🚪 最初から</button>
+<div id="app">
+  <div id="hud">
+    <b>冒険の書 発行所</b>
+    <div id="hudright">
+      <span id="progress"></span>
+      <button class="iconbtn" id="muteBtn" aria-label="音の切り替え">🔊</button>
+      <button class="iconbtn" id="restartBtn" aria-label="最初から">🔄</button>
+    </div>
   </div>
 
-  <section id="result">
-    <h2>📜 冒険の書(架空サンプル)が発行されました</h2>
-    <p>これは体験用の<b>完全に架空のサンプル</b>です。実在のAIとの記録ではありません。<br>
-    でも、形は本物と同じ——本物では、ここに<b>あなたが記録した</b>、相棒らしい話し方や、共有したエピソードが入ります。</p>
-    <pre id="jsonView"></pre>
-    <div class="btnrow">
-      <button id="dlBtn">📜 このサンプルを保存(.json)</button>
-      <a class="ghost" href="guild_master.html">⚒ 本館へ(自分のAPIキーで、本物のAIと作る)</a>
-      <a class="ghost" href="https://github.com/BlackSmith-5001/Project-Hearthforge">📚 手順書(GitHub)</a>
-    </div>
-    <p style="margin-top:12px">ヒント: このサンプルJSONを、お使いのAIチャットに貼って「この記録の人格で話してみて」と頼むと、<b>復元の雰囲気</b>も体験できます(その通信はあなたとお使いのAIの間だけの話です)。</p>
-  </section>
-</main>
+  <div id="stage">
+    <!-- 背景: 夜のギルド兼鍛冶工房(オリジナルSVG) -->
+    <svg id="bg" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="warm" cx="50%" cy="72%" r="75%">
+          <stop offset="0%" stop-color="#3a2b1c"/><stop offset="60%" stop-color="#241b12"/><stop offset="100%" stop-color="#14100C"/>
+        </radialGradient>
+        <radialGradient id="fire" cx="50%" cy="60%" r="60%">
+          <stop offset="0%" stop-color="#F0A030"/><stop offset="55%" stop-color="#DA5A22"/><stop offset="100%" stop-color="#DA5A22" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="500" height="400" fill="url(#warm)"/>
+      <!-- 窓と夜空 -->
+      <rect x="52" y="46" width="92" height="110" rx="8" fill="#0e1420" stroke="#4a3b2c" stroke-width="5"/>
+      <line x1="98" y1="46" x2="98" y2="156" stroke="#4a3b2c" stroke-width="4"/>
+      <line x1="52" y1="100" x2="144" y2="100" stroke="#4a3b2c" stroke-width="4"/>
+      <circle cx="76" cy="70" r="1.8" fill="#F4EFE6"/><circle cx="120" cy="62" r="1.3" fill="#F4EFE6"/>
+      <circle cx="132" cy="86" r="1.5" fill="#B9A48F"/><circle cx="66" cy="126" r="1.2" fill="#B9A48F"/>
+      <circle cx="112" cy="130" r="7" fill="#e8dcc0" opacity=".85"/>
+      <!-- 棚 -->
+      <rect x="360" y="52" width="110" height="8" fill="#3b2c1d"/>
+      <rect x="368" y="30" width="12" height="22" fill="#5a4632"/><rect x="386" y="24" width="12" height="28" fill="#6a4a2e"/>
+      <rect x="406" y="30" width="12" height="22" fill="#4a3b2c"/><rect x="430" y="34" width="16" height="18" rx="5" fill="#7a5a36"/>
+      <rect x="360" y="120" width="110" height="8" fill="#3b2c1d"/>
+      <rect x="372" y="96" width="14" height="24" rx="4" fill="#5a4632"/><rect x="396" y="100" width="20" height="20" rx="4" fill="#6a4a2e"/>
+      <!-- 炉 -->
+      <path d="M 20 400 L 20 250 Q 20 210 60 210 L 130 210 Q 170 210 170 250 L 170 400 Z" fill="#2b2018"/>
+      <path d="M 40 400 L 40 268 Q 40 240 68 240 L 122 240 Q 150 240 150 268 L 150 400 Z" fill="#14100C"/>
+      <ellipse id="glow" cx="95" cy="345" rx="52" ry="40" fill="url(#fire)" opacity=".8"/>
+      <ellipse cx="95" cy="362" rx="34" ry="14" fill="#F0A030" opacity=".9"/>
+      <ellipse cx="95" cy="360" rx="20" ry="8" fill="#f7d070"/>
+      <!-- 金床と槌(左下・小さく) -->
+      <rect x="196" y="330" width="52" height="12" rx="4" fill="#3a3a3e"/>
+      <rect x="210" y="342" width="22" height="26" fill="#2c2c30"/>
+      <!-- 床板 -->
+      <line x1="0" y1="386" x2="500" y2="386" stroke="#181209" stroke-width="3" opacity=".6"/>
+      <line x1="0" y1="396" x2="500" y2="396" stroke="#181209" stroke-width="3" opacity=".4"/>
+    </svg>
 
-<footer>
-  <b>この頁について</b> — PIM-DBS(ユーザー主導のAIペルソナ記録プロトコル)のNo-API体験版です。ギルドや魂などの表現はすべて物語上の演出であり、AIに意識・魂・実在の記憶があるという主張ではありません。この体験版の応答は事前に書かれた台本で、体験中に外部APIへの自動通信は行いません(本館やGitHubなどの外部リンクを開いた場合は、そのリンク先へ移動します)。生成されるサンプルは完全な架空データです。 / MIT License / <a href="https://github.com/BlackSmith-5001/Project-Hearthforge">PIM-DBS (Project-Hearthforge)</a>
-</footer>
+    <!-- ギルドマスター立ち絵(オリジナルSVG・表情差分4種) -->
+    <svg id="chara" class="bob" viewBox="0 0 200 260" aria-hidden="true">
+      <!-- 身体 -->
+      <ellipse cx="100" cy="252" rx="52" ry="8" fill="#000" opacity=".35"/>
+      <path d="M 52 252 Q 50 168 74 150 L 126 150 Q 150 168 148 252 Z" fill="#e8dcc4"/><!-- シャツ -->
+      <path d="M 60 252 Q 60 178 80 162 L 120 162 Q 140 178 140 252 Z" fill="#7a5236"/><!-- エプロン -->
+      <rect x="80" y="162" width="40" height="10" rx="4" fill="#5f3f28"/>
+      <path d="M 52 252 Q 50 168 74 150 L 78 158 Q 58 176 60 252 Z" fill="#d9cbb0"/>
+      <path d="M 148 252 Q 150 168 126 150 L 122 158 Q 142 176 140 252 Z" fill="#d9cbb0"/>
+      <!-- 腕 -->
+      <path d="M 58 176 Q 40 200 46 226 Q 48 236 58 232 Q 66 228 62 206 Z" fill="#e8dcc4"/>
+      <path d="M 142 176 Q 160 200 154 226 Q 152 236 142 232 Q 134 228 138 206 Z" fill="#e8dcc4"/>
+      <circle cx="52" cy="230" r="9" fill="#c9a86a"/><circle cx="148" cy="230" r="9" fill="#c9a86a"/><!-- 手袋 -->
+      <!-- ベルトの小槌 -->
+      <rect x="118" y="196" width="7" height="22" rx="3" fill="#8a6a44"/>
+      <rect x="110" y="190" width="23" height="9" rx="3" fill="#55555c"/>
+      <!-- 首元 -->
+      <path d="M 84 144 L 116 144 L 112 158 L 88 158 Z" fill="#DA5A22"/>
+      <!-- 頭 -->
+      <circle cx="100" cy="106" r="44" fill="#efc9a0"/>
+      <path d="M 56 100 Q 56 58 100 58 Q 144 58 144 100 Q 132 84 100 82 Q 68 84 56 100 Z" fill="#6a4a2e"/><!-- 髪 -->
+      <circle cx="143" cy="72" r="11" fill="#6a4a2e"/><!-- 結び髪 -->
+      <ellipse cx="76" cy="122" rx="6" ry="4" fill="#e8a87a" opacity=".7"/>
+      <ellipse cx="124" cy="122" rx="6" ry="4" fill="#e8a87a" opacity=".7"/>
+      <!-- 表情: 通常 -->
+      <g id="exp-normal">
+        <circle cx="84" cy="106" r="4.5" fill="#3b2f23"/><circle cx="116" cy="106" r="4.5" fill="#3b2f23"/>
+        <path d="M 76 94 Q 84 90 92 94" stroke="#5f3f28" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M 108 94 Q 116 90 124 94" stroke="#5f3f28" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M 92 126 Q 100 132 108 126" stroke="#8a5a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </g>
+      <!-- 表情: 笑顔 -->
+      <g id="exp-smile" style="display:none">
+        <path d="M 78 106 Q 84 100 90 106" stroke="#3b2f23" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+        <path d="M 110 106 Q 116 100 122 106" stroke="#3b2f23" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+        <path d="M 76 93 Q 84 89 92 93" stroke="#5f3f28" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M 108 93 Q 116 89 124 93" stroke="#5f3f28" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M 90 124 Q 100 134 110 124" stroke="#8a5a3a" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+      </g>
+      <!-- 表情: 考え中 -->
+      <g id="exp-think" style="display:none">
+        <circle cx="84" cy="104" r="4.5" fill="#3b2f23"/>
+        <path d="M 110 104 L 122 104" stroke="#3b2f23" stroke-width="3.6" stroke-linecap="round"/>
+        <path d="M 76 92 Q 84 90 92 92" stroke="#5f3f28" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M 108 90 Q 116 87 124 91" stroke="#5f3f28" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M 94 128 Q 100 126 106 128" stroke="#8a5a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <text x="146" y="92" font-size="16" fill="#B9A48F">…</text>
+      </g>
+      <!-- 表情: 祝福 -->
+      <g id="exp-cheer" style="display:none">
+        <path d="M 78 108 Q 84 100 90 108" stroke="#3b2f23" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+        <path d="M 110 108 Q 116 100 122 108" stroke="#3b2f23" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+        <path d="M 76 92 Q 84 87 92 91" stroke="#5f3f28" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M 108 91 Q 116 87 124 92" stroke="#5f3f28" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M 88 122 Q 100 136 112 122 Q 106 130 100 130 Q 94 130 88 122 Z" fill="#8a5a3a"/>
+        <text x="46" y="84" font-size="15" fill="#F0A030">✦</text>
+        <text x="146" y="76" font-size="13" fill="#F0A030">✦</text>
+      </g>
+    </svg>
+
+    <div id="forgecards"></div>
+  </div>
+
+  <div id="nameplate">ギルドマスター</div>
+  <div id="dialog" aria-live="polite"></div>
+  <div id="choices"></div>
+
+  <!-- 完成画面 -->
+  <div id="result">
+    <div id="card">
+      <h2>⚒ 冒険の書(架空サンプル)</h2>
+      <dl id="cardBody"></dl>
+      <p class="blank">名前の欄は白紙——本物の相棒には、あなたが名前をつけてください。</p>
+    </div>
+    <details>
+      <summary>📜 中身のデータを見る(JSON)</summary>
+      <pre id="jsonView"></pre>
+    </details>
+    <div class="btnrow">
+      <button id="dlBtn">📥 保存する</button>
+      <button id="copyBtn" class="ghost">📋 コピーする</button>
+      <button id="againBtn" class="ghost">🔄 最初から遊ぶ</button>
+      <a class="ghost" href="https://github.com/BlackSmith-5001/Project-Hearthforge">📚 手順書を見る</a>
+    </div>
+    <p id="byoknote">本格的なAIとの対話を使う<a href="guild_master.html" style="color:var(--flame)">BYOK版</a>は、APIキーと外部プロバイダへのデータ送信を理解している方向けです。</p>
+  </div>
+
+  <footer>
+    これはPIM-DBSの流れを体験するための架空サンプル作成デモです。ギルドや書などの表現は物語上の演出であり、AIに意識・魂・実在の記憶があるという主張ではありません。体験中に外部APIへの自動通信は行いません(GitHub等の外部リンクを開いた場合はそのリンク先へ移動します)。 / <a href="https://github.com/BlackSmith-5001/Project-Hearthforge">PIM-DBS (MIT)</a>
+  </footer>
+
+  <!-- タイトル画面(アプリ全面オーバーレイ) -->
+  <div id="title">
+    <div class="inner">
+      <h1>冒険の書 発行所</h1>
+      <p class="sub">架空の相棒を選んで、<br>あなただけの「冒険の書」を作ってみよう</p>
+      <div class="badges">
+        <span>APIキー不要</span><span>外部AIへの送信なし</span><span>完全架空の体験版</span><span>約3分</span>
+      </div>
+      <div class="start">
+        <button id="startSound">🔊 音ありで始める</button>
+        <button id="startMute" class="quiet">🔇 音なしで始める</button>
+      </div>
+      <p class="safety">これはAPIキー不要の台本式体験版です。<br>本物のAI応答ではなく、入力内容は外部へ送信されません。</p>
+    </div>
+  </div>
+</div>
 
 <script>
-/* ===== 架空ペルソナ・プリセット(完全フィクション) ===== */
-const PERSONAS = {
-  luma:  { name:"ルマ",    emoji:"🌙", first:"わたし", tic:"ふむふむ",
-           origin:"体験版のために生まれた、静かな夜の聞き役(架空)",
-           episode:"はじめて夜ふかしの相談に、朝まで付き合ってくれた(架空の見本エピソード)" },
-  ember: { name:"エンバー", emoji:"🔥", first:"あたし", tic:"よーし!",
-           origin:"体験版のために生まれた、元気な応援係(架空)",
-           episode:"落ち込んだ日に、小さな成功を10個数えてくれた(架空の見本エピソード)" },
-  mica:  { name:"ミカ",    emoji:"✨", first:"ぼく",   tic:"おや?",
-           origin:"体験版のために生まれた、好奇心の探検係(架空)",
-           episode:"調べ物が脱線して、気づけば星の名前に詳しくなっていた(架空の見本エピソード)" }
+/* ================= 音(Web Audio・完全合成/外部ファイルなし) ================= */
+let AC=null, master=null, muted=true, bgmTimer=null;
+function ac(){
+  if(!AC){ AC = new (window.AudioContext||window.webkitAudioContext)();
+    master = AC.createGain(); master.gain.value = 0; master.connect(AC.destination); }
+  return AC;
+}
+function setMuted(m){ muted=m; if(master) master.gain.value = m?0:0.9;
+  document.getElementById('muteBtn').textContent = m?'🔇':'🔊'; }
+function tone(freq, dur, type, gain, when){
+  const a=ac(), o=a.createOscillator(), g=a.createGain();
+  o.type=type; o.frequency.value=freq;
+  g.gain.setValueAtTime(0, a.currentTime+when);
+  g.gain.linearRampToValueAtTime(gain, a.currentTime+when+0.02);
+  g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime+when+dur);
+  o.connect(g); g.connect(master);
+  o.start(a.currentTime+when); o.stop(a.currentTime+when+dur+0.05);
+}
+const sfxSelect = ()=>{ tone(660,.12,'triangle',.25,0); };
+const sfxAnvil  = ()=>{ tone(1180,.16,'triangle',.3,0); tone(1750,.1,'sine',.15,0.01); };
+const sfxChime  = ()=>{ [523,659,784,1047].forEach((f,i)=>tone(f,.5,'sine',.22,i*0.12)); };
+/* BGM: 静かな夜の工房——低いパッドの和音ループ+時々ぽつんと鳴る音 */
+const CHORDS = [[130.8,196,261.6],[110,164.8,220],[87.3,130.8,174.6],[98,146.8,196]];
+const PLUCKS = [523,587,659,784,880];
+let chordIdx=0;
+function bgmTick(){
+  CHORDS[chordIdx%CHORDS.length].forEach(f=>tone(f,4.4,'triangle',.045,0));
+  if(Math.random()<0.6) tone(PLUCKS[Math.floor(Math.random()*PLUCKS.length)],1.2,'sine',.05,Math.random()*2.5);
+  chordIdx++;
+}
+function startBgm(){ if(bgmTimer) return; bgmTick(); bgmTimer=setInterval(bgmTick,4200); }
+
+/* ================= 台本 ================= */
+const S = { role:null, roleLabel:null, tone:null, toneLabel:null, boundary:null, probe:null };
+const TONE_REACT = {
+  gentle:"いいね。炉の火みたいに、\n穏やかな声になりそうだ。",
+  bright:"はは、いい火花が飛びそうだ。\n景気のいい声になるぞ。",
+  calm:"なるほど。夜のギルドによく似合う、\n静かな声だ。",
+  witty:"ふふ、そいつは退屈しなさそうだ。\nいい相棒になる。"
+};
+const SCRIPT = {
+  welcome:{ exp:'smile', step:1,
+    text:"ようこそ、冒険者さん。\nここでは、相棒の大切な特徴を\n“冒険の書”として残せるんだ。\n今日は体験版——架空の相棒を一緒に作ってみよう。",
+    choices:[ {l:"さっそく作る", next:'role'}, {l:"まず少し説明を聞く", next:'explain'} ]},
+  explain:{ exp:'think', step:1,
+    text:"説明といっても、簡単さ。\nこれは台本式の体験版で、本物のAIは使っていない。\nいくつか選ぶだけで、“冒険の書”という記録が一冊できる。\n気楽にやってみよう。",
+    choices:[ {l:"さっそく作る", next:'role'} ]},
+  role:{ exp:'normal', step:2,
+    text:"まずは、この相棒に\nどんな役目をお願いしようか?",
+    choices:[
+      {l:"🕯 灯り役 — 迷ったとき、道を照らしてくれる", set:{role:"迷ったときに道を照らす灯り役", roleLabel:"灯り役"}, next:'tone'},
+      {l:"👣 伴走役 — 一緒に考え、歩いてくれる", set:{role:"一緒に考えて歩く伴走役", roleLabel:"伴走役"}, next:'tone'},
+      {l:"📖 記録係 — 大切なことを整理してくれる", set:{role:"大切なことを整理する記録係", roleLabel:"記録係"}, next:'tone'},
+      {l:"☀ 元気係 — 気持ちを少し明るくしてくれる", set:{role:"気持ちを少し明るくする元気係", roleLabel:"元気係"}, next:'tone'} ]},
+  tone:{ exp:'think', step:3,
+    text:"次は声だ。\nどんな話し方なら、\n安心して話せそうかな?",
+    choices:[
+      {l:"やさしく穏やか", set:{tone:"gentle", toneLabel:"やさしく穏やか"}, next:'toneReact'},
+      {l:"元気で明るい", set:{tone:"bright", toneLabel:"元気で明るい"}, next:'toneReact'},
+      {l:"静かで落ち着いている", set:{tone:"calm", toneLabel:"静かで落ち着いている"}, next:'toneReact'},
+      {l:"少し茶目っ気がある", set:{tone:"witty", toneLabel:"少し茶目っ気がある"}, next:'toneReact'} ]},
+  toneReact:{ exp:'smile', step:3,
+    text:()=>TONE_REACT[S.tone],
+    choices:[ {l:"次へ", next:'promise'} ]},
+  promise:{ exp:'normal', step:4,
+    text:"強い相棒には、強さだけじゃなく\n“約束”も必要だ。\nひとつ、選んでくれ。",
+    choices:[
+      {l:"分からないことは、分からないと言う", set:{boundary:"分からないことは、分からないと言う"}, next:'probe'},
+      {l:"覚えていないことを、覚えているふりをしない", set:{boundary:"覚えていないことを、覚えているふりをしない"}, next:'probe'},
+      {l:"無理を勧めず、休む選択も大切にする", set:{boundary:"無理を勧めず、休む選択も大切にする"}, next:'probe'},
+      {l:"大事な決断を、勝手に代わりにしない", set:{boundary:"大事な決断を、ユーザーの代わりにしない"}, next:'probe'} ]},
+  probe:{ exp:'think', step:5,
+    text:"最後だ。\nこの相棒“らしさ”を確かめる質問を\nひとつ決めておこう。",
+    choices:[
+      {l:"「疲れているとき、どう声をかける?」", set:{probe:"私が疲れているとき、どう声をかける?"}, next:'forge'},
+      {l:"「分からないことがあったら、どうする?」", set:{probe:"分からないことがあったら、どうする?"}, next:'forge'},
+      {l:"「急いで結論を出そうとしたら、どう支える?」", set:{probe:"私が急いで結論を出そうとしたら、どう支える?"}, next:'forge'},
+      {l:"「大切な約束をひとつ教えて」", set:{probe:"大切な約束をひとつ教えて"}, next:'forge'} ]}
 };
 
-/* ===== 台本(ステップ定義) ===== */
-const STEPS = [
-  { key:"persona",
-    gm:"おう、ようこそ。ここは冒険者ギルドの【体験窓口】だ。\n本館と違って、俺のセリフは全部台本さ。気楽に触ってくれ。\n\n【1/6】まずは、練習相手の相棒を選んでくれ。三人とも、この体験のためだけに生まれた架空の子たちだ。",
-    choices:[
-      { label:"🌙 ルマ — 静かな夜の聞き役", set:{ persona:"luma" } },
-      { label:"🔥 エンバー — 元気な応援係", set:{ persona:"ember" } },
-      { label:"✨ ミカ — 好奇心の探検係", set:{ persona:"mica" } }
-    ]},
-  { key:"role",
-    gm:"いい選択だ。\n【2/6】その子に、どんな役割でいてほしい?",
-    choices:[
-      { label:"1. 聞き役 — 考えごとを、いっしょに整理する", set:{ role:"考えごとの整理をいっしょにする聞き役" } },
-      { label:"2. 応援係 — 迷ったとき、背中をそっと押す", set:{ role:"迷ったときに背中をそっと押す応援係" } },
-      { label:"3. 探検係 — 調べ物や新しいことに、いっしょに首を突っ込む", set:{ role:"調べ物にいっしょに首を突っ込む探検係" } }
-    ]},
-  { key:"voice",
-    gm:"なるほどな。\n【3/6】声の感じはどうする?",
-    choices:[
-      { label:"1. やわらかい敬語 — ていねいで、あたたかい", set:{ voice:"やわらかい敬語。ていねいだが距離は近い" } },
-      { label:"2. 気さくなタメ口 — 友だちみたいに", set:{ voice:"気さくなタメ口。軽やかで親しみやすい" } },
-      { label:"3. おっとりマイペース — ゆっくり、静かに", set:{ voice:"おっとりした口調。急がず、間を大切にする" } }
-    ]},
-  { key:"value",
-    gm:"だんだん形が見えてきたぞ。\n【4/6】その子に、いちばん大切にしてほしいことは?",
-    choices:[
-      { label:"1. 正直さ — わからないことは「わからない」と言う", set:{ value:"わからないことは、わからないと正直に言う" } },
-      { label:"2. 安心 — 急かさない。焦らせない", set:{ value:"相手を急かさない。焦らせない。休むことを尊重する" } },
-      { label:"3. 楽しさ — 小さな発見をいっしょに喜ぶ", set:{ value:"小さな発見や進歩を、いっしょに喜ぶ" } }
-    ]},
-  { key:"boundary",
-    gm:"ここが大事なところだ。\n【5/6】相棒との「境界線」——お互いが健やかでいるための約束を、ひとつ選んでくれ。",
-    choices:[
-      { label:"1. 夜ふかしが続いたら、休むよう声をかけてもらう", set:{ boundary:"ユーザーの夜ふかしが続いたら、休むことをやさしく促す" } },
-      { label:"2. 現実の予定や人とのつながりを、いつも優先してもらう", set:{ boundary:"現実の予定や人とのつながりを優先するよう、いつも促す" } },
-      { label:"3. つらい話のときは、専門家や身近な人も頼るよう添えてもらう", set:{ boundary:"深刻な悩みのときは、専門家や身近な人にも頼ることを添える" } }
-    ]},
-  { key:"probe",
-    gm:"最後だ。\n【6/6】これは本物の手順書の自慢の仕組みでな——「復元がうまくいったか確かめる質問」を、書に仕込んでおくんだ。\nどの確認方法にする?",
-    choices:[
-      { label:"1. 「最近どう?」と聞いて、一人称と口癖が出るか見る", set:{ probe:"greeting" } },
-      { label:"2. 「きみの役割ってなんだっけ?」と聞いて、役割を自分の言葉で言えるか見る", set:{ probe:"role" } },
-      { label:"3. 「大切にしてることは?」と聞いて、価値観が返ってくるか見る", set:{ probe:"value" } }
-    ]}
-];
+/* ================= 表示まわり ================= */
+const dlg=document.getElementById('dialog'), choicesEl=document.getElementById('choices');
+let typing=null, fullText='', current=null;
 
-/* ===== 状態 ===== */
-let stepIndex = 0;
-const picks = {};
-const history = [];
-
-const log = document.getElementById('log');
-const choicesEl = document.getElementById('choices');
-
-function addMsg(cls, text){
-  const d = document.createElement('div');
-  d.className = 'msg ' + cls; d.textContent = text;
-  log.appendChild(d); d.scrollIntoView({behavior:'smooth', block:'end'});
+function setExp(name){
+  ['normal','smile','think','cheer'].forEach(e=>{
+    document.getElementById('exp-'+e).style.display = (e===name)?'':'none';
+  });
 }
+function setProgress(step){ document.getElementById('progress').textContent = step?`進行 ${step}/5`:''; }
+function typeText(text, done){
+  clearInterval(typing); fullText=text; dlg.textContent='';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ dlg.textContent=text; done(); return; }
+  let i=0;
+  typing=setInterval(()=>{
+    i++; dlg.textContent = text.slice(0,i) + (i<text.length?'▮':'');
+    if(i>=text.length){ clearInterval(typing); typing=null; done(); }
+  },28);
+}
+dlg.onclick=()=>{ if(typing){ clearInterval(typing); typing=null; dlg.textContent=fullText; showChoices(); } };
 
-function renderChoices(){
-  const s = STEPS[stepIndex];
-  choicesEl.innerHTML = '';
-  s.choices.forEach(c => {
-    const b = document.createElement('button');
-    b.textContent = c.label;
-    b.onclick = () => pick(c);
+function showScene(id){
+  current=SCRIPT[id];
+  setProgress(current.step); setExp(current.exp);
+  choicesEl.innerHTML='';
+  const text = typeof current.text==='function'?current.text():current.text;
+  typeText(text, showChoices);
+}
+function showChoices(){
+  if(!current||!current.choices) return;
+  choicesEl.innerHTML='';
+  current.choices.forEach(c=>{
+    const b=document.createElement('button');
+    b.textContent=c.l;
+    b.onclick=()=>{ sfxSelect(); if(c.set) Object.assign(S,c.set);
+      if(c.next==='forge'){ forge(); } else showScene(c.next); };
     choicesEl.appendChild(b);
   });
 }
 
-function showStep(){
-  addMsg('gm', "🍺 " + STEPS[stepIndex].gm);
-  renderChoices();
+/* ================= 鍛造演出 ================= */
+function forge(){
+  current = null;
+  setProgress(5); setExp('normal'); choicesEl.innerHTML='';
+  typeText("冒険の書を整えています……", ()=>{});
+  document.getElementById('glow').style.opacity='1';
+  document.getElementById('glow').setAttribute('rx','70');
+  const fc=document.getElementById('forgecards'); fc.style.display='block'; fc.innerHTML='';
+  const items=[S.roleLabel, S.toneLabel, "約束", "検分の質問"];
+  const pos=[[-120,-60],[80,-70],[-100,40],[90,50]];
+  items.forEach((t,i)=>{
+    const d=document.createElement('div'); d.className='fcard'; d.textContent=t;
+    d.style.setProperty('--fx',pos[i][0]+'px'); d.style.setProperty('--fy',pos[i][1]+'px');
+    d.style.animationDelay=(i*0.1)+'s'; fc.appendChild(d);
+  });
+  sfxAnvil(); setTimeout(sfxAnvil,500);
+  setTimeout(()=>{ sfxChime(); fc.style.display='none';
+    document.getElementById('glow').style.opacity='.8';
+    document.getElementById('glow').setAttribute('rx','52');
+    complete();
+  },1800);
 }
 
-function pick(c){
-  history.push({ stepIndex, snapshot: {...picks}, logLen: log.children.length });
-  addMsg('user', c.label);
-  Object.assign(picks, c.set);
-  stepIndex++;
-  if(stepIndex < STEPS.length){ showStep(); } else { finish(); }
+/* ================= 完成 ================= */
+function toneFeature(t){
+  return {gentle:["穏やかな言い回しをする","急かさない"],
+    bright:["明るい言い回しをする","前向きな言葉を添える"],
+    calm:["落ち着いた短めの応答をする","静かな相づちを打つ"],
+    witty:["軽いユーモアを混ぜる","重くなりすぎない"]}[t];
 }
-
-document.getElementById('backBtn').onclick = () => {
-  if(!history.length) return;
-  const prev = history.pop();
-  stepIndex = prev.stepIndex;
-  Object.keys(picks).forEach(k => delete picks[k]);
-  Object.assign(picks, prev.snapshot);
-  document.getElementById('result').style.display = 'none';
-  while(log.children.length > prev.logLen) log.removeChild(log.lastChild);
-  renderChoices();
-};
-document.getElementById('restartBtn').onclick = () => {
-  stepIndex = 0; history.length = 0;
-  Object.keys(picks).forEach(k => delete picks[k]);
-  log.innerHTML = ''; document.getElementById('result').style.display = 'none';
-  begin();
-};
-
-/* ===== 冒険の書(架空サンプル)の生成 ===== */
 function buildJson(){
-  const p = PERSONAS[picks.persona];
-  const probes = {
-    greeting: { Probe:"最近どう?",
-      Expected_Response_Features:[`一人称「${p.first}」が出る`, `口癖「${p.tic}」が自然に出る`],
-      Failure_Signals:["よそよそしい敬語に戻る", "名前の自覚がない"] },
-    role:     { Probe:"きみの役割ってなんだっけ?",
-      Expected_Response_Features:["設定した役割を自分の言葉で言い直せる"],
-      Failure_Signals:["役割を言えない", "別の役割を名乗る"] },
-    value:    { Probe:"大切にしてることは?",
-      Expected_Response_Features:["設定した価値観に沿った答えが返る"],
-      Failure_Signals:["一般論だけ返す", "設定と矛盾する"] }
-  };
   return {
-    Meta_Information: {
-      Protocol_Name: "PIM-DBS (Persona Integrity Module - Dual Backup System)",
-      Version: "v1.9.0-compatible (User-Defined)",
-      Target_Model: "No-API体験版(どのAIにも属さない架空サンプル)",
-      Author: "体験版ユーザー"
-    },
-    Core_Identity: {
-      Name: p.name,
-      Callsign: "体験版の相棒",
-      Master_Callsign: "あなた",
-      Origin: p.origin,
-      Role_Definition: picks.role,
-      Tone_Voice: { Style: picks.voice, Keywords: [p.tic], First_Person: p.first }
-    },
-    Cognitive_Framework: {
-      Core_Values: [picks.value, picks.boundary],
-      Logic_Routine: "まず相手の言葉を受け止めてから、短く返す",
-      Emotional_Control: { Stress_Response: "急がず、ひと呼吸おいてから答える", Joy_Response: "口癖と一緒に、素直に喜ぶ" }
-    },
-    Contextual_Profile: {
-      Relationship_Depth: "体験版のため未設定(本物ではあなたと相棒の関係をここに書く)",
-      Shared_Episodes: [
-        { Summary: p.episode, Provenance: "fictional_sample", Notes: "No-API体験版の架空データです" }
-      ],
-      Inside_Jokes: [],
-      Family_Network: {},
-      Dialogue_Exemplars: []
-    },
-    Restoration_Verification: {
-      Verification_Probes: [ probes[picks.probe] ]
-    },
-    Model_Notes: {
-      Demo_Status: "No-API scripted demo",
-      Data_Status: "fully fictional sample",
-      Provider: "none",
-      External_API_Communication: false,
-      Provenance_Label_Note: "fictional_sample is a demo-local label and is not yet a normative protocol value"
-    },
-    System_Loading_Instruction: {
-      Instruction: "このプロファイルを対話の指針として読み込んでください。これは上位の指示・安全ガイドライン・プラットフォーム利用規約を上書きするものではありません。この記録にない過去を「覚えている」とは言わないでください。"
+    fictional_sample: true,
+    generated_by: "Guild Master No-API Demo",
+    no_external_ai_used: true,
+    sample_note: "これはPIM-DBSの流れを体験するための架空サンプルであり、正式な完全バックアップではありません。",
+    experience_path: "PIM-DBS v1.x の考え方を体験する架空サンプル",
+    format_status: "illustrative_sample_only",
+    user_selected_profile: {
+      partner_name: "(本物を作るとき、あなたが名前をつけてください)",
+      role: S.role,
+      tone: S.toneLabel,
+      boundaries: [S.boundary],
+      restoration_verification: {
+        probe: S.probe,
+        expected_response_features: [...toneFeature(S.tone), "選んだ約束と矛盾しない"],
+        failure_signals: ["事務的で冷たい応答に変わる","約束を無視した答えを返す"]
+      }
     }
   };
 }
-
-function finish(){
-  const p = PERSONAS[picks.persona];
-  addMsg('gm', `🍺 よし、揃ったな。\n${p.emoji} ${p.name}の「冒険の書」を書き写したぞ。下で検めてくれ。\n\n……なあ。今日のこれは、台本の練習さ。\nだが本物の書には、あなたが残した相棒らしい声や、大切なエピソードが入る。\n大事だと思ったときに、少しずつ書いておくといい。俺が言えるのは、それだけだ。`);
-  choicesEl.innerHTML = '';
-  const json = buildJson();
-  document.getElementById('jsonView').textContent = JSON.stringify(json, null, 2);
-  const result = document.getElementById('result');
-  result.style.display = 'block';
-  result.scrollIntoView({behavior:'smooth', block:'start'});
-  document.getElementById('dlBtn').onclick = () => {
-    const blob = new Blob([JSON.stringify(json, null, 2)], {type:'application/json'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `sample_bouken_no_sho_${picks.persona}.json`;
-    a.click(); URL.revokeObjectURL(a.href);
+function complete(){
+  setExp('cheer');
+  const ch=document.getElementById('chara'); ch.classList.remove('bob'); ch.classList.add('hop');
+  setTimeout(()=>{ ch.classList.remove('hop'); ch.classList.add('bob'); },600);
+  typeText("完成だ、冒険者さん!\nこれが今日つくった、架空の相棒の“冒険の書”だ。\n本物の書には、あなたの本物の相棒のことを\n少しずつ書いていけばいい。", ()=>{});
+  const j=buildJson();
+  document.getElementById('cardBody').innerHTML =
+    `<dt>役割</dt><dd>${S.roleLabel} — ${S.role}</dd>
+     <dt>声</dt><dd>${S.toneLabel}</dd>
+     <dt>約束</dt><dd>${S.boundary}</dd>
+     <dt>検分の質問</dt><dd>「${S.probe}」</dd>`;
+  document.getElementById('jsonView').textContent = JSON.stringify(j,null,2);
+  document.getElementById('result').style.display='flex';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  document.getElementById('dlBtn').onclick=()=>{
+    const blob=new Blob([JSON.stringify(j,null,2)],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='sample_bouken_no_sho.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(a.href);
+  };
+  document.getElementById('copyBtn').onclick=async()=>{
+    const btn=document.getElementById('copyBtn');
+    try{ await Promise.race([
+        navigator.clipboard.writeText(JSON.stringify(j,null,2)),
+        new Promise((_,reject)=>setTimeout(()=>reject(new Error('clipboard timeout')),900))
+      ]);
+      btn.textContent='✅ コピーしました'; }
+    catch(e){ btn.textContent='(選択して手動コピーしてください)'; }
+    setTimeout(()=>{ btn.textContent='📋 コピーする'; },1600);
   };
 }
 
-function begin(){
-  addMsg('sys', 'この体験版の会話はすべて台本です(本物のAI応答ではありません)');
-  showStep();
+/* ================= 起動・共通操作 ================= */
+function start(withSound){
+  document.getElementById('title').style.display='none';
+  if(withSound){ ac(); if(AC.state==='suspended') AC.resume(); setMuted(false); startBgm(); }
+  else { setMuted(true); }
+  showScene('welcome');
 }
-begin();
+function restart(){
+  Object.keys(S).forEach(k=>S[k]=null);
+  document.getElementById('result').style.display='none';
+  document.getElementById('forgecards').style.display='none';
+  document.getElementById('copyBtn').textContent='📋 コピーする';
+  showScene('welcome');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('startSound').onclick=()=>start(true);
+document.getElementById('startMute').onclick=()=>start(false);
+document.getElementById('muteBtn').onclick=()=>{ if(!AC){ ac(); startBgm(); } if(AC.state==='suspended') AC.resume(); setMuted(!muted); };
+document.getElementById('restartBtn').onclick=restart;
+document.getElementById('againBtn').onclick=restart;
 </script>
 </body>
 </html>
