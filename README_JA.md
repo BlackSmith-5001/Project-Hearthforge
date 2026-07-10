@@ -1,7 +1,7 @@
 # 🔨 PIM-DBS  
 **Persona Integrity Module – Dual Backup System**
 
-**Version:** v2.0.1
+**Version:** v2.0.2
 
 〜 AIの「人格」と「文脈」を守るための、ユーザー主導型防衛プロトコル 〜
 

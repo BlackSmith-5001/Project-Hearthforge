@@ -2,6 +2,25 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
+## v2.0.2 - 2026-07-10
+
+### Added
+- Added No-API Guild Master Demo as a first-touch, scripted demo for new users.
+- Added README / README_JA entry points for the No-API Demo near the top of the project.
+- Added No-API Demo links to the Demos section of Quick Links.
+
+### Changed
+- Clarified the existing Guild Master Demo as an Advanced BYOK / API-aware demo.
+- Clarified the distinction between the No-API scripted demo and the BYOK demo.
+
+### Notes
+- The No-API Demo requires no API key and no account setup.
+- The No-API Demo is scripted and does not provide real AI responses.
+- The No-API Demo uses only fully fictional sample data.
+- The No-API Demo performs no automatic external AI API communication during the demo.
+- The BYOK Guild Master Demo remains available for users who understand API keys and provider-side data handling.
+- This release does not change the v2.0 Stable Specification or any template structure.
+
 ## v2.0.1 - 2026-07-09
 
 ### Changed
