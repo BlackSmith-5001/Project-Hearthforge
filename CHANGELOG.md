@@ -2,6 +2,23 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
+## v2.0.4 - 2026-07-11
+
+### Fixed
+- Fixed the VN-style No-API Guild Master Demo audio lifecycle so locally synthesized BGM and sound effects stop cleanly when the page is hidden, unloaded, frozen, or closed.
+- Stopped the BGM timer on page hide / unload / freeze and reset the timer after stopping.
+- Set the master audio gain to zero when stopping audio.
+- Suspended the AudioContext when the page is hidden or unloaded.
+- Resumed audio only when the page becomes visible again and the demo is not muted.
+- Prevented duplicate BGM timer creation during audio resume.
+
+### Notes
+- This release only changes the No-API Guild Master Demo audio lifecycle.
+- No README / README_JA navigation wording was changed beyond the version label.
+- No template structure was changed.
+- No v2 stable specification documents were changed.
+- No JSON Schema, probes.json, or packet.md files were added.
+
 ## v2.0.3 - 2026-07-11
 
 ### Changed
