@@ -10,6 +10,33 @@
 
 ---
 
+## はじめての方へ
+GitHub、JSON、PIM-DBSに慣れていない方は、テンプレートを編集する前にAPIキー不要デモと初心者向けガイドから始めてください。
+
+1. [APIキー不要デモ](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html) で雰囲気を試す。
+2. [はじめてのPIM-DBS](docs/beginner_guide_ja.md) を読む。
+3. [JSONってなに？](docs/json_for_beginners_ja.md) を読む。
+4. [公開用 / 私的利用ガイド](docs/public_private_guide_ja.md) を確認する。
+5. [JSONテンプレート](templates/pim-dbs_template.json) をコピーし、分かる範囲のプレースホルダーだけを書き換え、完成した私的プロファイルは手元に保存する。
+
+PIM-DBS は、AIの本当の記憶、意識、魂の保存、モデル改変、安全ルールの回避ではありません。会話スタイルや文脈の手がかりを、ユーザー自身が手元で管理するための continuity profile です。
+
+---
+
+## どれを使えばいい？
+
+| やりたいこと | 使うもの |
+| --- | --- |
+| まず雰囲気を知りたい | [APIキー不要デモ](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html) |
+| GitHubやJSONに慣れていない | [はじめてのPIM-DBS](docs/beginner_guide_ja.md) と [JSONってなに？](docs/json_for_beginners_ja.md) |
+| いま使うシンプルなテンプレートがほしい | [JSONテンプレート](templates/pim-dbs_template.json) |
+| AIに案内してもらいながら作りたい | [Self-Forgeプロンプト](templates/self_forge_prompt.md) |
+| 設計の詳しい話を読みたい | [v2.0 Stable Specification](docs/v2_stable_specification_ja.md) |
+| v2 draft template を見つけた | 初回利用では必須ではない、参考・preview用として扱う |
+| BYOKブラウザデモを使いたい | APIキーと外部プロバイダへの送信を理解している方向け |
+
+---
+
 ## 🚦 まずはこちら
 初めて PIM-DBS プロファイルを作る場合は、次の順番で進めてください。
 
@@ -45,6 +72,9 @@ APIキーや外部AIプロバイダへの送信を理解している方は、下
 
 **まずはこちら**
 - 🚦 **おすすめの進め方:** [まずはこちら](#-まずはこちら)
+- 🌱 **はじめてのPIM-DBS:** [docs/beginner_guide_ja.md](docs/beginner_guide_ja.md)
+- 🧩 **JSONってなに？:** [docs/json_for_beginners_ja.md](docs/json_for_beginners_ja.md)
+- 🔐 **Security Notes:** [SECURITY.md](SECURITY.md)
 
 **ガイド**
 - 🔒 **公開用 / 私的利用ガイド:** [docs/public_private_guide_ja.md](docs/public_private_guide_ja.md)

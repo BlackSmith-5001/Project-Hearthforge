@@ -11,6 +11,33 @@ across model updates — without modifying the model itself.
 
 ---
 
+## For first-time visitors
+If you are new to GitHub, JSON, or PIM-DBS, start with the No-API Demo and the beginner guides before editing any template.
+
+1. Try the [No-API Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html).
+2. Read the [First-Time Guide](docs/beginner_guide_en.md).
+3. Read [What is JSON?](docs/json_for_beginners_en.md).
+4. Check the [Public / Private Guide](docs/public_private_guide_en.md).
+5. Copy the [JSON Template](templates/pim-dbs_template.json), replace only the placeholder text you understand, and save completed private profiles locally.
+
+PIM-DBS is not AI memory, consciousness, soul preservation, model modification, or a safety bypass. It is a user-owned continuity profile for conversation style and context cues.
+
+---
+
+## Which file should I use?
+
+| Need | Use |
+| --- | --- |
+| I just want to understand the idea | [No-API Demo](https://blacksmith-5001.github.io/Project-Hearthforge/tools/guild_master_no_api_demo.html) |
+| I am new to GitHub or JSON | [First-Time Guide](docs/beginner_guide_en.md) and [What is JSON?](docs/json_for_beginners_en.md) |
+| I want the current simple profile template | [JSON Template](templates/pim-dbs_template.json) |
+| I want a guided prompt | [Self-Forge Prompt](templates/self_forge_prompt.md) |
+| I want architecture details | [v2.0 Stable Specification](docs/v2_stable_specification_en.md) |
+| I found a v2 draft template | Treat it as preview/reference material, not required for first use |
+| I want to use the BYOK browser demo | Advanced users only; understand API keys and provider-side data handling first |
+
+---
+
 ## 🚦 Start Here
 For a first PIM-DBS profile, follow this path:
 
@@ -46,6 +73,9 @@ For users who understand API keys and provider-side data handling, the advanced 
 
 **Start Here**
 - 🚦 **Recommended workflow:** [Start Here](#-start-here)
+- 🌱 **First-Time Guide:** [docs/beginner_guide_en.md](docs/beginner_guide_en.md)
+- 🧩 **What is JSON?:** [docs/json_for_beginners_en.md](docs/json_for_beginners_en.md)
+- 🔐 **Security Notes:** [SECURITY.md](SECURITY.md)
 
 **Guides**
 - 🔒 **Public / Private Guide:** [docs/public_private_guide_en.md](docs/public_private_guide_en.md)
