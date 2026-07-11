@@ -2,6 +2,26 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
+## v2.0.3 - 2026-07-11
+
+### Changed
+- Upgraded the No-API Guild Master Demo into a short visual-novel-style "Adventure Log Office" experience for first-time and non-technical users.
+- Added an original guild workshop background, Guild Master character, expression changes, scripted dialogue choices, forging animation, and locally synthesized BGM and sound effects.
+- Clarified the README / README_JA paths between the first-touch No-API Demo and the Advanced BYOK Demo.
+
+### Improved
+- Preserved the existing No-API Demo URL while making the first-touch experience more welcoming and easier to understand.
+- Added clearer wording that the demo is scripted, fully fictional, does not use an API key, and does not send the selected content to an external AI provider.
+- Improved mobile and tablet dialogue layout, AudioContext recovery, JSON save/copy fallback behavior, replay reset behavior, and interaction handling during forging.
+
+### Notes
+- The No-API Demo does not make external AI or API calls.
+- It does not require or store an API key.
+- It uses fully fictional scripted data and is not a real AI response.
+- Generated JSON is an illustrative sample and not a complete formal backup.
+- The existing Advanced BYOK Demo remains available for users who understand API-key use and provider-side data handling.
+- No stable specification, schema, or template structure was changed in this release.
+
 ## v2.0.2 - 2026-07-10
 
 ### Added
