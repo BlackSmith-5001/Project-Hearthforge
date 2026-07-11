@@ -342,6 +342,23 @@ function bgmTick(){
 }
 function startBgm(){ if(bgmTimer) return; bgmTick(); bgmTimer=setInterval(bgmTick,4200); }
 
+/* タブを離れた/閉じたときに音を確実に止める */
+function stopAudio(){
+  if(bgmTimer){ clearInterval(bgmTimer); bgmTimer=null; }
+  if(master) master.gain.value = 0;
+  if(AC && AC.state !== 'closed'){ try{ AC.suspend(); }catch(e){} }
+}
+function resumeAudio(){
+  if(muted || !AC) return;
+  if(AC.state === 'suspended'){ try{ AC.resume(); }catch(e){} }
+  if(master) master.gain.value = 0.9;
+  if(!bgmTimer) bgmTimer = setInterval(bgmTick, 4200);
+}
+window.addEventListener('pagehide', stopAudio);
+window.addEventListener('beforeunload', stopAudio);
+document.addEventListener('freeze', stopAudio);
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden) stopAudio(); else resumeAudio(); });
+
 /* ================= 台本 ================= */
 const S = { role:null, roleLabel:null, tone:null, toneLabel:null, boundary:null, probe:null };
 const TONE_REACT = {
