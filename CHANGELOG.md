@@ -2,6 +2,27 @@
 
 PIM-DBS tracks public releases for profile backup, restoration guidance, demo access, and response-change observation materials.
 
+## v2.0.5 - 2026-07-12
+
+### Added
+- Added beginner-facing public release documentation in English and Japanese.
+- Added First-Time Guide documents for non-technical users and GitHub newcomers.
+- Added JSON-for-beginners documents explaining how to edit PIM-DBS JSON safely.
+- Added SECURITY.md with privacy, profile-injection, BYOK API-key, and third-party profile review guidance.
+
+### Changed
+- Updated README / README_JA near the top with first-time visitor guidance.
+- Added a "Which file should I use?" / "どれを使えばいい？" table to help users choose between the No-API Demo, beginner guides, JSON template, Self-Forge prompt, v2 specification, and BYOK demo.
+- Added Quick Links entries for the First-Time Guide, JSON beginner guide, and Security Notes.
+
+### Notes
+- This release only improves public release documentation and beginner navigation.
+- No template structure was changed.
+- No demo behavior was changed.
+- No v2 stable specification documents were changed.
+- PIM-DBS remains not AI memory, not consciousness, not soul preservation, not model modification, and not a safety bypass.
+- Completed private profiles should be saved locally and not published.
+
 ## v2.0.4 - 2026-07-11
 
 ### Fixed
